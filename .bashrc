@@ -73,6 +73,7 @@ shopt -s histappend
 unalias -a
 alias vi='vim'
 alias free='free -h'
+alias tree='tree -C'
 alias ip='ip --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'

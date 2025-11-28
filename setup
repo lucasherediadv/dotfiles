@@ -1,13 +1,15 @@
 #!/bin/sh
+
 set -e
 
 ln -sf "$PWD/.vimrc" "$HOME/.vimrc"
 ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
 ln -sf "$PWD/.inputrc" "$HOME/.inputrc"
+ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$PWD/.tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$PWD/.bash_profile" "$HOME/.bash_profile"
 
-for i in foot gh git sway; do
+for i in foot gh sway; do
   cd $i && ./setup
   cd -
 done

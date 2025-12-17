@@ -9,7 +9,7 @@ ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$PWD/.tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$PWD/.bash_profile" "$HOME/.bash_profile"
 
-for i in foot gh sway; do
+for i in foot sway; do
   cd $i && ./setup
   cd -
 done

@@ -1,5 +1,0 @@
-version: 1
-editor: vim
-pager: less
-prompt: enabled
-git_protocol: https

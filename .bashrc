@@ -14,7 +14,7 @@ export GITUSER="$USER"
 export REPOS="$HOME/repos"
 export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
-export SCRIPTS="$DOTFILES/scripts"
+export SCRIPTS="$GHREPOS/scripts/bin"
 
 # Editor
 export EDITOR=vim

@@ -1,4 +1,0 @@
-#!/bin/sh
-command -v lynx >/dev/null 2>&1 || { echo "This script requires lynx"; exit 1; }
-# exec w3m https://archlinux.org/news/
-exec lynx https://archlinux.org/news/

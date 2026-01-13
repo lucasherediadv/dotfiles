@@ -1,3 +1,0 @@
-#!/bin/sh
-go mod init "github${PWD#*github}"
-go mod tidy

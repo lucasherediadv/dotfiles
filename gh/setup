@@ -1,4 +1,3 @@
 #!/bin/sh
-mkdir ~/.config 2>/dev/null
-rm -rf ~/.config/gh 2>/dev/null
-ln -s "$PWD" "$HOME/.config/gh"
+mkdir ~/.config/gh 2>/dev/null
+ln -sf "$PWD/config.yml" "$HOME/.config/gh/config.yml"

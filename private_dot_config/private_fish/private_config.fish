@@ -25,4 +25,5 @@ if status is-interactive
     abbr free free -hm
     abbr df df -h
     abbr du du -h
+    abbr repos gh repo list
 end

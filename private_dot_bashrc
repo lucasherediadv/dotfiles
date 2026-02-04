@@ -1,67 +1,9 @@
-#!/bin/bash
-# shellcheck disable=SC1090,SC1091
-
 case $- in
 *i*) ;; # Interactive
 *) return ;;
 esac
 
-# ----------------------- Environment variables ----------------------
-
-# Editor
-export EDITOR=nvim
-export VISUAL=nvim
-
-# Pager
-export PAGER=less
-export LESSHISTFILE=/dev/null
-
-# CDPATH
-export CDPATH=".:$GHREPOS:$DOTFILES:$REPOS:$HOME"
-
-# ------------------------------- Path -------------------------------
-
-pathappend() {
-  declare arg
-  for arg in "$@"; do
-      test -d "$arg" || continue
-      PATH=${PATH//":$arg:"/:}
-      PATH=${PATH/#"$arg:"/}
-      PATH=${PATH/%":$arg"/}
-      export PATH="${PATH:+"$PATH:"}$arg"
-  done
-}
-
-pathappend \
-  "$GOBIN" \
-  "$SCRIPTS"
-
-# ------------------------ Bash shell options ------------------------
-
-shopt -s checkwinsize globstar dotglob extglob
-
-
-# ------------------------------ History -----------------------------
-
-export HISTSIZE=5000
-export HISTFILESIZE=10000
-export HISTCONTROL=ignoreboth
-
-set -o vi
-shopt -s histappend
-
-# ------------------------------ Aliases -----------------------------
-
-unalias -a
-alias vi='nvim'
-alias free='free -h'
-alias tree='tree -C'
-alias ip='ip --color=auto'
-alias grep='grep --color=auto'
-alias diff='diff --color=auto'
-alias ls='ls -hF --color=auto --group-directories-first'
-
-# ------------- Source external dependencies / Completion ------------
-
-[ -f "$HOME/.bash_private" ] && . "$HOME/.bash_private"
-[ -f "/usr/share/bash-completion/bash_completion" ] && . "/usr/share/bash-completion/bash_completion"
+# History
+unset HISTFILE
+export HISTSIZE=0
+export HISTFILESIZE=0

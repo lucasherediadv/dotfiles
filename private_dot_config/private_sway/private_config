@@ -10,6 +10,10 @@ bindsym $mod+Shift+e exec swaymsg exit
 
 # Output
 output LVDS-1 mode 1366x768@59.989Hz
+output LVDS-1 {
+    subpixel rgb
+    scale 1
+}
 
 # Window style
 default_border none

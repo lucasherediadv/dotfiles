@@ -1,9 +1,0 @@
-set keymap vi
-set editing-mode vi
-set bell-style none
-set completion-map-case on
-set show-all-if-ambiguous on
-set enable-bracketed-paste on
-set show-all-if-unmodified on
-set completion-ignore-case on
-set mark-symlinked-directories on

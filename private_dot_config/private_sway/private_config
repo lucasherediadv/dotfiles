@@ -9,7 +9,7 @@ bindsym $mod+Shift+Return exec firefox
 bindsym $mod+Shift+e exec swaymsg exit
 
 # Output
-output HDMI-A-3 mode 1920x1080@74.973Hz
+output LVDS-1 mode 1366x768@59.989Hz
 
 # Window style
 default_border none
@@ -51,4 +51,4 @@ bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
 # Automatically start applications
-exec --no-startup-id swaymsg 'workspace 1; exec --no-startup-id foot'
+exec --no-startup-id swaymsg 'workspace 1; exec --no-startup-id foot tmux'

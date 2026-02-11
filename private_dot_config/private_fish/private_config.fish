@@ -14,7 +14,6 @@ if status is-interactive
   abbr vi nvim
   abbr c clear -x
   abbr clear clear -x
-  abbr cat bat --theme-dark=gruvbox-dark
   abbr ls ls -Fh --color --group-directories-first
   abbr la ls -aFh --color --group-directories-first
   abbr ll ls -aFhl --color --group-directories-first

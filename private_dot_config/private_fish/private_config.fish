@@ -19,7 +19,10 @@ if status is-interactive
   abbr c clear -x
   abbr clear clear -x
   abbr todo $EDITOR $HOME/.todo.md
-  abbr ls ls -F --group-directories-first
-  abbr la ls -F --group-directories-first -a
-  abbr ll ls -F --group-directories-first -a -l
+  abbr cat bat --theme-dark=gruvbox-dark
+  abbr ls eza -F --icons --group-directories-first
+  abbr la eza -F --icons --group-directories-first -a
+  abbr ll eza -F --icons --group-directories-first -a -l
+
+  starship init fish | source
 end

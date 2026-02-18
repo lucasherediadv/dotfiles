@@ -19,6 +19,7 @@ if status is-interactive
   abbr p podman
   abbr df df -h
   abbr du du -h
+  abbr cz chezmoi
   abbr c clear -x
   abbr clear clear -x
   abbr free free -h -m

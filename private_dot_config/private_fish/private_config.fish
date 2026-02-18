@@ -16,12 +16,19 @@ if status is-interactive
   end
 
   abbr vi nvim
+  abbr df df -h
+  abbr du du -h
   abbr c clear -x
-  abbr free free -h -m
   abbr clear clear -x
-  abbr tree tree -a -C
+  abbr free free -h -m
+  abbr ip ip --color=auto
+  abbr pstree pstree -UC age
+  abbr diff diff --color=auto
+  abbr grep grep --color=auto
   abbr todo $EDITOR $HOME/.todo.md
   abbr ls ls -F --group-directories-first
+  abbr tree tree -a -C -I .git --gitignore
+  abbr psc ps xawf -eo pid,user,cgroup,args
   abbr la ls -F --group-directories-first -a
   abbr ll ls -F --group-directories-first -a -l
 end

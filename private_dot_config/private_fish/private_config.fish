@@ -16,6 +16,7 @@ if status is-interactive
   end
 
   abbr vi nvim
+  abbr p podman
   abbr df df -h
   abbr du du -h
   abbr c clear -x

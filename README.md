@@ -1,4 +1,4 @@
-Initialize and clone into the custom path
+Set up a new machine with a single command:
 ```sh
-chezmoi init --source "$HOME/repos/github.com/lucasherediadv/dotfiles" https://github.com/lucasherediadv/dotfiles.git
+chezmoi init --apply lucasherediadv --source "$HOME/repos/github.com/lucasherediadv/dotfiles"
 ```

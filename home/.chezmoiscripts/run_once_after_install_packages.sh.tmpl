@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+{{ if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch")) -}}
+
+{{- $common := list
+    "atuin"
+    "base"
+    "base-devel"
+    "bat"
+    "bottom"
+    "btrfs-progs"
+    "chezmoi"
+    "duf"
+    "eza"
+    "fd"
+    "firefox"
+    "fish"
+    "foot"
+    "foot-terminfo"
+    "fuse-overlayfs"
+    "fzf"
+    "git"
+    "github-cli"
+    "intel-ucode"
+    "iwd"
+    "lazygit"
+    "linux"
+    "linux-firmware"
+    "man-db"
+    "man-pages"
+    "neovim"
+    "newsboat"
+    "nftables"
+    "pacman-contrib"
+    "podman"
+    "polkit"
+    "reflector"
+    "ripgrep"
+    "starship"
+    "sudo"
+    "sway"
+    "tldr"
+    "tmux"
+    "tree-sitter-cli"
+    "ttf-jetbrains-mono-nerd"
+    "wireless-regdb"
+    "wl-clipboard"
+    "zram-generator" -}}
+
+{{- $laptop := list
+    "grub" -}}
+
+{{- $desktop := list
+    "vim" -}}
+
+{{- $packages := $common -}}
+{{- if eq .chezmoi.hostname "laptop" -}}
+  {{- $packages = concat $packages $laptop -}}
+{{- end -}}
+{{- if eq .chezmoi.hostname "desktop" -}}
+  {{- $packages = concat $packages $desktop -}}
+{{- end -}}
+
+sudo pacman -S --needed --noconfirm {{ $packages | join " " }}
+
+{{ end -}}

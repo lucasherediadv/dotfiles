@@ -18,8 +18,6 @@ set -gx DOTFILES $GHREPOS/dotfiles
 set -gx CDPATH .:$GHREPOS:$REPOS/github.com:$HOME
 
 if status is-interactive
-    fish_vi_key_bindings
-
     abbr vi nvim
     abbr c clear -x
     abbr clear clear -x

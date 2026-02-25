@@ -36,6 +36,7 @@ if status is-interactive
     abbr grep grep --color=auto
     abbr psc ps xawf -eo pid,user,cgroup,args
     abbr ls eza --icons --group-directories-first -F
+    abbr l eza --icons --group-directories-first -aF
     abbr la eza --icons --group-directories-first -aF
     abbr ll eza --icons --group-directories-first -alF
     abbr tree eza --icons --group-directories-first --tree --ignore-glob=.git -aF
@@ -57,6 +58,8 @@ if status is-interactive
     abbr cat bat
 
     abbr as atuin search
+
+    abbr nb newsboat
 
     atuin init fish | source
     starship init fish | source

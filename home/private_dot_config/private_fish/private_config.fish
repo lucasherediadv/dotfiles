@@ -17,8 +17,11 @@ set -gx DOTFILES $GHREPOS/dotfiles
 
 set -gx CDPATH .:$GHREPOS:$REPOS/github.com:$HOME
 
+set -gx ATUIN_NOBIND true
+
 if status is-interactive
     abbr vi nvim
+    abbr cz chezmoi
     abbr c clear -x
     abbr clear clear -x
     abbr todo $EDITOR $HOME/.todo.md

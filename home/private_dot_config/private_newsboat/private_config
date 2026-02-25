@@ -1,0 +1,6 @@
+bind-key k up
+bind-key j down
+bind-key l open
+bind-key h quit
+auto-reload yes
+include /usr/share/doc/newsboat/contrib/colorschemes/gruvbox

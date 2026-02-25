@@ -25,7 +25,7 @@ vimcmd_replace_symbol = "[❮](green)"
 vimcmd_replace_one_symbol = "[❮](green)"
 
 [git_branch]
-format = "[$branch]($style)"
+format = "[$branch]($style) "
 style = "bright-black"
 
 # [git_status]

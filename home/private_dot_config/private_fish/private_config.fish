@@ -15,7 +15,8 @@ set -gx GHREPOS $REPOS/github.com/$GITUSER
 set -gx SCRIPTS $GHREPOS/scripts
 set -gx DOTFILES $GHREPOS/dotfiles
 
-set -gx CDPATH .:$GHREPOS:$REPOS/github.com:$HOME
+set -gx _ZO_ECHO 1
+# set -gx CDPATH .:$GHREPOS:$REPOS/github.com:$HOME
 
 set -gx ATUIN_NOBIND true
 
@@ -31,5 +32,6 @@ if status is-interactive
     abbr ll eza --icons --group-directories-first -alF
 
     atuin init fish | source
+    zoxide init fish | source
     starship init fish | source
 end

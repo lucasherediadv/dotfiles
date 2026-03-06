@@ -1,0 +1,3 @@
+#!/bin/sh
+mkdir -p "$HOME/.config/tmux" 2>/dev/null
+ln -fs "$PWD/tmux.conf" "$HOME/.config/tmux/tmux.conf"

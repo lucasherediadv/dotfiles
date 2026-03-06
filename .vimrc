@@ -5,7 +5,7 @@ endif
 set nocompatible
 
 " automatically indent new lines
-set autoindent "
+set autoindent
 
 " replace tabs with spaces automatically
 set expandtab
@@ -13,7 +13,7 @@ set expandtab
 " number of spaces to replace a tab with when expandtab
 set tabstop=2
 
-" use case when searching
+" smart case
 set ignorecase
 set smartcase
 
@@ -25,7 +25,6 @@ set nonumber
 
 " turn col and row position on in bottom right
 set ruler
-
 
 " disable bell (also disable in .inputrc)
 set noerrorbells
@@ -75,7 +74,4 @@ set ttyfast
 filetype plugin on
 
 " no status line
-set laststatus=0 " for none
-
-" better command-line completion
-set wildmenu
+set laststatus=0

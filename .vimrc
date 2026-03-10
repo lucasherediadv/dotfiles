@@ -54,7 +54,10 @@ set viminfofile=NONE
 
 set linebreak
 
-" not a fan of bracket matching
+" not a fan of bracket matching or folding
+if has("eval") " vim-tiny detection
+  let g:loaded_matchparen=1
+endif
 set noshowmatch
 
 " wrap around when searching

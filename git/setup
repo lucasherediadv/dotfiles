@@ -1,3 +1,3 @@
 #!/bin/sh
-mkdir -p "$HOME/.config/gh" 2>/dev/null
+mkdir -p "$HOME/.config/git" 2>/dev/null
 ln -fs "$PWD/config" "$HOME/.config/git/config"

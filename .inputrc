@@ -1,4 +1,15 @@
-set keymap vi
-set editing-mode vi
-set bell-style none
+# Ensures that pasting into readline inserts the clipboard as single string of characters,
+# instead of inserting characters as if they were entered from the keyboard
 set enable-bracketed-paste on
+
+# Vi style editing interface
+set editing-mode vi
+
+# Display matches for ambiguous patterns at first tab press
+set show-all-if-ambiguous on
+
+# Perform file completion in a case insensitive fashion
+set completion-ignore-case on
+
+# Immediately add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on

@@ -1,5 +1,5 @@
 case $- in
-*i*) ;;
+*i*) ;; # Interactive
 *) return ;;
 esac
 
@@ -32,7 +32,7 @@ pathappend() {
 
 pathappend "$SCRIPTS/bin"
 
-# Bash options
+# Bash shell options
 shopt -s dotglob
 shopt -s extglob
 shopt -s globstar
@@ -41,11 +41,22 @@ shopt -s expand_aliases
 
 # History
 set -o vi
+shopt -s cmdhist
 shopt -s histappend
-export HISTCONTROL=ignoreboth
+export HISTSIZE=500000
+export HISTFILESIZE=100000
+export PROMPT_COMMAND='history -a'
+export HISTCONTROL="erasedups:ignoreboth"
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 
 # Aliases
 unalias -a
 alias vi='vim'
 alias clear='clear -x'
 alias ls='ls --color=auto --group-directories-first -F'
+
+# Use bash-completion, if available, and avoid double-sourcing
+[[ $PS1 &&
+! ${BASH_COMPLETION_VERSINFO:-} &&
+-f /usr/share/bash-completion/bash_completion ]] &&
+. /usr/share/bash-completion/bash_completion

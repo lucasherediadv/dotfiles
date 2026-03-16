@@ -12,8 +12,8 @@ export BROWSER=firefox
 export REPOS=$HOME/repos
 export GITUSER="lucasherediadv"
 export GHREPOS="$REPOS/github.com/$GITUSER"
-export SCRIPTS="$GHREPOS/scripts"
 export DOTFILES="$GHREPOS/dotfiles"
+export SCRIPTS="$DOTFILES/scripts"
 
 # $CDPATH
 export CDPATH=".:$GHREPOS:$DOTFILES:$REPOS/github.com:$HOME"
@@ -30,7 +30,7 @@ pathappend() {
   done
 } && export -f pathappend
 
-pathappend "$SCRIPTS/bin"
+pathappend "$SCRIPTS"
 
 # Bash shell options
 shopt -s dotglob

@@ -4,6 +4,16 @@ endif
 
 set background=dark
 
+if exists('+termguicolors')
+  set termguicolors
+endif
+
+let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
+
+set cursorline
+
 " Disable vi compatibility, if for some reason it's on
 if &compatible
   set nocompatible
@@ -67,8 +77,6 @@ endif
 if s:MaySet('wildmenu')
   set wildmenu
 endif
-
-set ruf=%30(%=%#LineNr#%.50F\ [%{strlen(&ft)?&ft:'none'}]\ %l:%c\ %p%%%)
 
 if s:MaySet('scrolloff')
   set scrolloff=1
@@ -177,9 +185,6 @@ endif
 match Visual '\s\+$'
 
 set wrap
-
-set cursorline
-highlight CursorLine cterm=NONE ctermbg=236
 
 " stop complaints about switching buffer with changes
 set hidden

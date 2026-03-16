@@ -1,0 +1,17 @@
+#!/bin/bash
+
+out=''
+for arg in "$@"; do
+	base=${arg##*/}
+	if [[ $arg =~ / ]]; then
+		dir=${arg%/*}
+		dir=${dir##*/}
+	else
+		arg="$PWD"
+		dir=${arg##*/}
+	fi
+	dir+=/
+	out+=$dir$base" "
+done
+
+tmux rename-window "$out" && exec "$EDITOR" "$@"

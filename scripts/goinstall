@@ -1,0 +1,2 @@
+#!/bin/sh
+CGO_ENABLED=0 go install -trimpath -mod=readonly -buildmode=exe -v -tags 'static' -ldflags="-s -w" "$@"

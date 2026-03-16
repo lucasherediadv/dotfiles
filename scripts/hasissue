@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# This script filters GitHub issues based on a search query and optional state.
+
+# Check if a search query was provided
+if [ -z "$1" ]; then
+	echo "Find and filter GitHub issues."
+	echo ""
+  echo "USAGE:"
+  echo "  hasissue <query> <state>"
+	echo ""
+  echo "ARGUMENTS:"
+  echo "  <query>: The text to search for in the issue title or body."
+  echo "  <state>: The issue state (open, closed, all)."
+	echo ""
+	echo "EXAMPLES:"
+	echo "  $ hasissues 'failed'"
+	echo "  $ hasissues 'documentation' closed"
+	echo "  $ hasissues 'bug' all"
+	echo ""
+  exit 1
+fi
+
+# The first argument is always the search query
+search_query="$1"
+
+# The second argument, if it exists, is the state. If not, it defaults to 'open'.
+state_filter="${2:-open}"
+
+# Use the native `gh issue list` options for filtering
+gh issue list --state "$state_filter" --search "$search_query"

@@ -1,0 +1,2 @@
+#!/bin/sh
+exec printf >&2 'Whichcraft detected! Did you mean: type -P %s\n' "$*"

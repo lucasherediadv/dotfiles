@@ -1,0 +1,4 @@
+#!/bin/sh
+command -v cowsay >/dev/null 2>&1 || { echo "This script requires 'cowsay' (or 'cowthink')." >&2; exit 1; }
+command -v fortune >/dev/null 2>&1 || { echo "This script requires 'fortune'." >&2; exit 1; }
+cowthink "$(fortune)"

@@ -1,0 +1,4 @@
+#!/bin/sh
+curl -s -H "Authorization: token $GH_TOKEN" \
+  "https://api.github.com/users/$GITUSER/starred" |
+  jq -r '.[] | .owner.login + "/" + .name'

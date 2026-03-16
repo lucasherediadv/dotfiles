@@ -1,0 +1,4 @@
+#!/bin/sh
+_have() { command -v "$1" > /dev/null 2>&1; }
+! _have mods && echo "This script requires charmbracelet/mods" && exit 1
+mods --format --no-cache --model gm2f "$*"

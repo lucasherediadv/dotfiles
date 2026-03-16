@@ -1,0 +1,4 @@
+#!/bin/sh
+command -v glow >/dev/null 2>&1 || { echo "This script requires glow"; exit 1; }
+test -z "$@"  && test -f ./README.md && exec glow --pager ./README.md
+exec glow --pager "$@"

@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -e
+
+# Check for GITHUB_TOKEN and GITUSER environment variables
+if [ -z "$GH_TOKEN" ]; then
+  echo "Error: The \$GH_TOKEN environment variable is not set. Please provide your GitHub Personal Access Token." >&2
+  exit 1
+fi
+
+if [ -z "$GITUSER" ]; then
+  echo "Error: The \$GITUSER environment variable is not set. Please provide your GitHub username." >&2
+  exit 1
+fi
+
+# Check terminal width and display a warning if it's too small
+if [ "$(tput cols)" -lt 102 ]; then
+  echo "Warning: Your terminal window is too narrow to display the full contribution graph." >&2
+fi
+
+graphql_query='
+{
+  "query": "query { user(login: \"'"$GITUSER"'\") { contributionsCollection { contributionCalendar { weeks { contributionDays { color } } } } } }"
+}'
+
+# Make a direct curl call to the GitHub GraphQL API
+days=( $(curl -s -H "Authorization: Bearer $GH_TOKEN" \
+  -X POST -d "$graphql_query" https://api.github.com/graphql \
+  | jq -r '..|.color? // empty' | grep .) )
+
+# Define the symbols for the 'plus' style
+block_full="✚"
+block_empty="•"
+
+char() {
+  if [ "$1" = "#ebedf0" ]; then
+    echo "$block_empty"
+  else
+    echo "$block_full"
+  fi
+}
+
+space=" "
+if [ -t 1 ] && [ "$(tput cols)" -lt 102 ]; then
+  space=""
+fi
+
+printf "\n"
+
+for d in $(seq 0 6); do
+  for w in $(seq 0 51); do
+    hex="${days[w*7+d]}"
+    printf "\e[38;2;%d;%d;%dm%s\e[m%s" "$((16#${hex:1:2}))" "$((16#${hex:3:2}))" "$((16#${hex:5:2}))" "$(char "$hex")" "$space"
+  done
+  printf "\n"
+done
+printf "\n"

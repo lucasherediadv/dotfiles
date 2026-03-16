@@ -1,0 +1,99 @@
+#!/bin/sh
+set -e
+
+# Check for the global ZETTELKASTEN environment variable
+if [ -z "$ZETTELKASTEN" ]; then
+    echo "Error: The ZETTELKASTEN environment variable is not set."
+    exit 1
+fi
+
+# Notes are expected to be in the 'docs/' subdirectory of the ZETTELKASTEN root.
+ZK_DOCS="$ZETTELKASTEN/docs"
+
+# The 'add' function implements the Folder/README structure (UID/README.md)
+add() {
+    # 1. Check/create the notes directory ($ZK_ROOT/docs)
+    test ! -d "$ZK_DOCS" && echo "Creating directory: $ZK_DOCS" && mkdir -p "$ZK_DOCS"
+
+    # 2. Create the unique UID directory using the external 'isosec' command
+    DIR_UID="$(isosec)"
+    NOTE_DIR="$ZK_DOCS/$DIR_UID"
+    mkdir -p "$NOTE_DIR"
+
+    # 3. Define the final note file path
+    NOTE_FILE="$NOTE_DIR/README.md"
+
+    # 4. Create an empty file to open the editor
+    touch "$NOTE_FILE"
+
+    # 5. Open the editor with the README.md file
+    ${EDITOR:-vim} "$NOTE_FILE"
+
+    # 6. Check if the file was created; if empty, remove the directory
+    if [ ! -s "$NOTE_FILE" ]; then
+        echo "Note is empty. Discarding folder and file."
+        rm "$NOTE_FILE" 2>/dev/null
+        rmdir "$NOTE_DIR" 2>/dev/null
+        exit 0
+    fi
+
+    # 7. Git Commit and Push
+    cd "$ZETTELKASTEN" # Commit from the root of the Git repo
+
+    # Use the first line of the README.md (stripping heading hashes) as the commit message
+    COMMIT_MSG=$(head -1 "$NOTE_FILE" | sed 's/#\+ *//' | cut -c 1-80)
+
+    # Fallback message if the note starts without a heading
+    test -z "$COMMIT_MSG" && COMMIT_MSG="zk: New note $DIR_UID (no title provided)"
+
+    git add "$NOTE_DIR" # Add the entire new directory
+    git commit -m "$COMMIT_MSG"
+    git push
+}
+
+# The 'query' function for fast searching
+query() {
+    test -z "$1" && echo "Missing search query." && exit 1
+
+    SEARCH_TERM="$*"
+
+    if ! command -v git >/dev/null 2>&1; then
+        echo "Error: 'git' command not found. Cannot perform query."
+        exit 1
+    fi
+
+    cd "$ZETTELKASTEN"
+
+    # Use git grep
+    git grep -i "$SEARCH_TERM" -- "$ZK_DOCS"
+}
+
+# Get the script name for the help message
+SCRIPT_NAME=${0##*/}
+
+case "$1" in
+add)
+    add
+    ;;
+query)
+    shift
+    query "$@"
+    ;;
+"")
+    echo "Manage your zettelkasten knowledge base."
+    echo ""
+    echo "USAGE:"
+    echo "  $SCRIPT_NAME <command> [arguments]"
+    echo ""
+    echo "COMMANDS:"
+    echo "  add:   Create a new note."
+    echo "  query: Search the content of all committed notes."
+		echo ""
+    exit 0
+    ;;
+*)
+    echo "Error: Unknown command '$1'."
+    echo "Run '$SCRIPT_NAME' for a list of available commands."
+    exit 1
+    ;;
+esac

@@ -16,7 +16,7 @@ export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 
 # $CDPATH
-export CDPATH=".:$GHREPOS:$DOTFILES:$REPOS/github.com:$HOME"
+export CDPATH=".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
 
 # $PATH
 pathappend() {

@@ -7,7 +7,7 @@ esac
 export PAGER=less
 export LESSHISTFILE=/dev/null
 export EDITOR=vim
-export EDITOR=vim
+export VISUAL=vim
 export BROWSER=firefox
 export REPOS=$HOME/repos
 export GITUSER="lucasherediadv"
@@ -60,3 +60,6 @@ alias ls='ls --color=auto --group-directories-first -F'
 ! ${BASH_COMPLETION_VERSINFO:-} &&
 -f /usr/share/bash-completion/bash_completion ]] &&
 . /usr/share/bash-completion/bash_completion
+
+# Prompt
+eval "$(starship init bash)"

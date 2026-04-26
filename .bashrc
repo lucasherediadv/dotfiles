@@ -15,6 +15,9 @@ export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 
+# Java
+export JAVA_HOME=/usr/lib/jvm/default
+
 # $CDPATH
 export CDPATH=".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
 
@@ -30,7 +33,8 @@ pathappend() {
   done
 } && export -f pathappend
 
-pathappend "$SCRIPTS"
+pathappend "$SCRIPTS" \
+  "$JAVA_HOME/bin"
 
 # Bash shell options
 shopt -s dotglob
@@ -83,5 +87,7 @@ alias ls='ls --color=auto --group-directories-first -F'
 -f /usr/share/bash-completion/bash_completion ]] &&
 . /usr/share/bash-completion/bash_completion
 
-# Prompt
-eval "$(starship init bash)"
+# Initialize starship only if the binary is available in the system
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init bash)"
+fi

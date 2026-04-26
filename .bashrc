@@ -15,6 +15,12 @@ export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$DOTFILES/scripts"
 
+# Go
+export CGO_ENABLED=0
+export GOPROXY=direct
+export GOPATH="$HOME/.local/share/go"
+export GOBIN="$HOME/.local/share/go/bin"
+
 # Java
 export JAVA_HOME=/usr/lib/jvm/default
 
@@ -33,8 +39,7 @@ pathappend() {
   done
 } && export -f pathappend
 
-pathappend "$SCRIPTS" \
-  "$JAVA_HOME/bin"
+pathappend "$SCRIPTS" "$GOBIN" "$JAVA_HOME/bin"
 
 # Bash shell options
 shopt -s dotglob

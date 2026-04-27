@@ -12,11 +12,11 @@ This is a personal `dotfiles` repository managing shell configuration and enviro
 
 **Project Structure:**
 - **Root scripts** (`.bashrc`, `.bash_profile`, `.vimrc`, `.inputrc`) - Core shell and editor configurations
-- **Modular components** (subdirectories: `git/`, `tmux/`, `sway/`, `foot/`) - Tool-specific configurations with self-contained setup
+- **Modular components** (subdirectories: `git/`, `tmux/`, `sway/`, `foot/`, `starship/`) - Tool-specific configurations with self-contained setup
 - **Main entry point** - `./setup` (root script that orchestrates all component setups)
 
 **Setup Pattern:**
-Each major component (`git`, `tmux`, `sway`, `foot`) follows an identical pattern:
+Each major component (`git`, `tmux`, `sway`, `foot`, `starship`) follows an identical pattern:
 1. Has a `setup` executable script
 2. Contains configuration files to be symlinked (e.g., `git/config` → `~/.config/git/config`)
 3. The root `./setup` script loops through all components and calls their individual setup scripts
@@ -29,7 +29,7 @@ All tool-specific configurations use `XDG Base Directory Specification` (`$HOME/
 **Install/Setup:**
 ```bash
 ./setup                  # Main entry point - installs all component configs
-cd <component> && ./setup # Individual component setup (git, tmux, sway, or foot)
+cd <component> && ./setup # Individual component setup (git, tmux, sway, foot, or starship)
 ```
 
 There is no build, test, or lint infrastructure in this project. It is a configuration management repository that uses shell scripts for installation.

@@ -14,6 +14,7 @@ export GITUSER="lucasherediadv"
 export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 export SCRIPTS="$GHREPOS/scripts/bin"
+export GHGISTS="$GHREPOS/gists"
 
 # Go
 export CGO_ENABLED=0
@@ -25,7 +26,7 @@ export GOBIN="$HOME/.local/share/go/bin"
 export JAVA_HOME=/usr/lib/jvm/default
 
 # $CDPATH
-export CDPATH=".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
+export CDPATH=".:$HOME:$REPOS/github.com:$GHREPOS:$GHGISTS:$DOTFILES"
 
 # $PATH
 pathappend() {

@@ -20,7 +20,7 @@ export GHGISTS="$GHREPOS/gists"
 export CGO_ENABLED=0
 export GOPROXY=direct
 export GOPATH="$HOME/.local/share/go"
-export GOBIN="$HOME/.local/share/go/bin"
+export GOBIN="$HOME/.local/share/go/bin/"
 
 # Java
 export JAVA_HOME=/usr/lib/jvm/default

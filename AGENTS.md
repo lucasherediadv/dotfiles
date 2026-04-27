@@ -2,7 +2,7 @@
 
 ## General
 
-- Automatically update this `AGENTS.md` file when new preferences, conventions, or context are established for this repo
+- Automatically update this `AGENTS.md` file when new preferences, conventions, or context are established for this repository
 
 ## Repository Overview
 
@@ -68,5 +68,4 @@ Setup scripts use symbolic links (e.g., `ln -fs "$PWD/config" "$HOME/.config/git
 
 ## Commits
 
-- Never add `Co-authored-by: Copilot` or any Copilot trailer to commits
 - Never add any AI co-authorship trailers to commit messages

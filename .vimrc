@@ -20,6 +20,9 @@ endif
 set hlsearch
 set linebreak
 
+" While typing a search command, show where the pattern, as it was typed so far, matches
+set incsearch
+
 " Use CTRL-L to clear the highlighting of 'hlsearch' and call :diffupdate
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>

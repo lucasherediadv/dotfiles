@@ -1,3 +1,0 @@
-#!/bin/sh
-OMIT_PACKAGES="^base$|^base-devel$|^efibootmgr$|^intel-ucode$|^linux$|^linux-firmware$|^zram-generator$"
-exec pacman --query --explicit --quiet | grep --extended-regexp --invert-match "$OMIT_PACKAGES"

@@ -93,6 +93,11 @@ alias ls='ls --color=auto --group-directories-first -F'
 -f /usr/share/bash-completion/bash_completion ]] &&
 . /usr/share/bash-completion/bash_completion
 
+# Personalized configuration
+[ -f "$HOME/.bash_personal" ] && . "$HOME/.bash_personal"
+[ -f "$HOME/.bash_private" ] && . "$HOME/.bash_private"
+[ -f "$HOME/.bash_work" ] && . "$HOME/.bash_work"
+
 # Initialize starship only if the binary is available in the system
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init bash)"

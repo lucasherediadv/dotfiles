@@ -1,3 +1,6 @@
+#!/bin/bash
+# shellcheck disable=SC1091
+
 case $- in
 *i*) ;; # Interactive
 *) return ;;
@@ -83,9 +86,10 @@ clone() {
 
 # Aliases
 unalias -a
-alias vi='vim'
+alias vi='$EDITOR'
 alias clear='clear -x'
 alias ls='ls --color=auto --group-directories-first -F'
+alias todo='$EDITOR $HOME/.TODO.md'
 
 # Use bash-completion, if available, and avoid double-sourcing
 [[ $PS1 &&

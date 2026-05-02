@@ -88,8 +88,8 @@ clone() {
 unalias -a
 alias vi='$EDITOR'
 alias clear='clear -x'
-alias ls='ls --color=auto --group-directories-first -F'
 alias todo='$EDITOR $HOME/.TODO.md'
+alias ls='eza --icons --group-directories-first -F'
 
 # Use bash-completion, if available, and avoid double-sourcing
 [[ $PS1 &&

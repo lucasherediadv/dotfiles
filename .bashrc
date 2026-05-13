@@ -87,6 +87,7 @@ clone() {
 
 # Aliases
 unalias -a
+alias cat='bat'
 alias vi='$EDITOR'
 alias clear='clear -x'
 alias todo='$EDITOR $HOME/.TODO.md'

@@ -9,9 +9,10 @@ esac
 # Environment variables
 export PAGER=less
 export LESSHISTFILE=/dev/null
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 export BROWSER=firefox
+export BAT_THEME=gruvbox-dark
 export REPOS=$HOME/repos
 export GITUSER="lucasherediadv"
 export GHREPOS="$REPOS/github.com/$GITUSER"

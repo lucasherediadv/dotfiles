@@ -95,9 +95,9 @@ alias ls='eza --icons --group-directories-first -F'
 
 # Use bash-completion, if available, and avoid double-sourcing
 [[ $PS1 &&
-! ${BASH_COMPLETION_VERSINFO:-} &&
--f /usr/share/bash-completion/bash_completion ]] &&
-. /usr/share/bash-completion/bash_completion
+  ! ${BASH_COMPLETION_VERSINFO:-} &&
+  -f /usr/share/bash-completion/bash_completion ]] &&
+  . /usr/share/bash-completion/bash_completion
 
 # Personalized configuration
 [ -f "$HOME/.bash_personal" ] && . "$HOME/.bash_personal"

@@ -44,7 +44,7 @@ pathappend() {
   done
 } && export -f pathappend
 
-pathappend "$SCRIPTS" "$GOBIN" "$JAVA_HOME/bin"
+pathappend "$SCRIPTS" "$GOBIN" "$HOME/.local/bin" "$JAVA_HOME/bin"
 
 # Bash shell options
 shopt -s dotglob

@@ -1,27 +1,29 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-$username\
-$hostname\
-${custom.toolbox}\
 $directory\
 $git_branch\
-$git_state\
 $git_status\
 $cmd_duration\
-$line_break\
-$python\
 $character"""
 
-[custom.toolbox]
-description = "Show username, hostname and toolbox container name"
-when = "test -f /run/.toolboxenv"
-command = "echo -n $USER@$HOSTNAME/$(grep '^name=' /run/.containerenv | cut -d'\"' -f2)"
-style = "bright-black"
-format = "[$output]($style) "
+# $python\
+# $hostname\
+# $username\
+# $git_state\
+# $line_break\
+# ${custom.toolbox}\
+
+# [custom.toolbox]
+# description = "Show username, hostname and toolbox container name"
+# when = "test -f /run/.toolboxenv"
+# command = "echo -n $USER@$HOSTNAME/$(grep '^name=' /run/.containerenv | cut -d'\"' -f2)"
+# style = "bright-black"
+# format = "[$output]($style) "
 
 [directory]
 style = "blue"
+truncation_length = 2
 
 [character]
 success_symbol = "[❯](purple)"
@@ -43,16 +45,16 @@ renamed = "​"
 deleted = "​"
 stashed = "≡"
 
-[git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "bright-black"
+# [git_state]
+# format = '\([$state( $progress_current/$progress_total)]($style)\) '
+# style = "bright-black"
 
 [cmd_duration]
 format = "[$duration]($style) "
 style = "yellow"
 
-[python]
-format = "[$virtualenv]($style) "
-style = "bright-black"
-detect_extensions = []
-detect_files = []
+# [python]
+# format = "[$virtualenv]($style) "
+# style = "bright-black"
+# detect_extensions = []
+# detect_files = []

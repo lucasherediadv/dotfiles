@@ -51,3 +51,26 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
+
+#
+# Utilities
+#
+
+# Special keys to adjust brightness via brightnessctl
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+# Special key to take a screenshot with grim
+bindsym $mod+Shift+s exec grim
+
+#
+# Auto launch applications
+#
+
+exec foot tmux new-session -s main
+
+#
+# Source external configurations
+#
+
+include /etc/sway/config.d/*

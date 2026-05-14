@@ -33,7 +33,6 @@ if status is-interactive
     alias cat='bat'
     alias vi='$EDITOR'
     alias c='clear -x'
-    alias t='tmux attach || tmux new -s work'
     alias clear='clear -x'
     alias todo='$EDITOR $HOME/.TODO.md'
     alias ls='eza --icons --group-directories-first -F'

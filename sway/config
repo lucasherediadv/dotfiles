@@ -67,7 +67,7 @@ bindsym $mod+Shift+s exec grim
 # Auto launch applications
 #
 
-exec foot tmux new-session -s main
+exec foot tmux
 
 #
 # Source external configurations

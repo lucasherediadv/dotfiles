@@ -8,10 +8,17 @@ bindsym $mod+Return exec foot
 bindsym $mod+Shift+Return exec firefox
 bindsym $mod+Shift+e exec swaymsg exit
 
-# Output
-output LVDS-1 mode 1366x768@59.989Hz
+# Output LVDS-1 (laptop panel)
+output LVDS-1 mode 1366x768@59.989Hz position 1920 0
+output LVDS-1 max_render_time 1
 output LVDS-1 subpixel rgb
 output LVDS-1 scale 1
+
+# Output HDMI-A-1 (Philips 241V8)
+output HDMI-A-1 mode 1920x1080@75Hz
+output HDMI-A-1 max_render_time 1
+output HDMI-A-1 subpixel rgb
+output HDMI-A-1 scale 1
 
 # Window style
 default_border none

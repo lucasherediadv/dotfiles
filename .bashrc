@@ -6,19 +6,29 @@ case $- in
 *) return ;;
 esac
 
-# Environment variables
+# ----------------------- Environment variables ----------------------
+
+# Pager
 export PAGER=less
-export LESSHISTFILE=/dev/null
-export EDITOR=nvim
-export VISUAL=nvim
-export BROWSER=firefox
 export BAT_THEME=gruvbox-dark
+export LESSHISTFILE=/dev/null
+
+# Editor
+export EDITOR=vim
+export VISUAL=vim
+# export EDITOR=nvim
+# export VISUAL=nvim
+
+# Repositories
 export REPOS=$HOME/repos
 export GITUSER="lucasherediadv"
 export GHREPOS="$REPOS/github.com/$GITUSER"
+
+# Dotfiles
 export DOTFILES="$GHREPOS/dotfiles"
+
+# Scripts
 export SCRIPTS="$GHREPOS/scripts/bin"
-export GHGISTS="$GHREPOS/gists"
 
 # Go
 export CGO_ENABLED=0
@@ -29,10 +39,12 @@ export GOBIN="$HOME/.local/share/go/bin/"
 # Java
 export JAVA_HOME=/usr/lib/jvm/default
 
-# $CDPATH
-export CDPATH=".:$HOME:$REPOS/github.com:$GHREPOS:$GHGISTS:$DOTFILES"
+# ------------------------------ $CDPATH -----------------------------
 
-# $PATH
+export CDPATH=".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
+
+# ------------------------------- $PATH ------------------------------
+
 pathappend() {
   declare arg
   for arg in "$@"; do
@@ -46,14 +58,16 @@ pathappend() {
 
 pathappend "$SCRIPTS" "$GOBIN" "$HOME/.local/bin" "$JAVA_HOME/bin"
 
-# Bash shell options
+# ------------------------ Bash shell options ------------------------
+
 shopt -s dotglob
 shopt -s extglob
 shopt -s globstar
 shopt -s checkwinsize
 shopt -s expand_aliases
 
-# History
+# ------------------------------ History -----------------------------
+
 set -o vi
 shopt -s cmdhist
 shopt -s histappend
@@ -63,46 +77,27 @@ export PROMPT_COMMAND='history -a'
 export HISTCONTROL="erasedups:ignoreboth"
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 
-# Functions
-clone() {
-  local repo="$1" user
-  local repo="${repo#https://github.com/}"
-  local repo="${repo#git@github.com:}"
-  if [[ $repo =~ / ]]; then
-    user="${repo%%/*}"
-  else
-    user="$GITUSER"
-    [[ -z "$user" ]] && user="$USER"
-  fi
-  local name="${repo##*/}"
-  local userd="$REPOS/github.com/$user"
-  local path="$userd/$name"
-  [[ -d "$path" ]] && cd "$path" && return
-  mkdir -p "$userd"
-  cd "$userd"
-  echo gh repo clone "$user/$name" -- --recurse-submodule
-  gh repo clone "$user/$name" -- --recurse-submodule
-  cd "$name"
-} && export -f clone
+# ------------------------------ Aliases -----------------------------
 
-# Aliases
 unalias -a
-alias cat='bat'
 alias vi='$EDITOR'
 alias clear='clear -x'
-alias todo='$EDITOR $HOME/.TODO.md'
 alias ls='eza --icons --group-directories-first -F'
+# alias ls='ls --color=auto --group-directories-first -F'
+
+# -------------------- Personalized configuration --------------------
+
+[ -f "$HOME/.bash_personal" ] && . "$HOME/.bash_personal"
+[ -f "$HOME/.bash_private" ] && . "$HOME/.bash_private"
+[ -f "$HOME/.bash_work" ] && . "$HOME/.bash_work"
+
+# ------------- Source external dependencies / completion ------------
 
 # Use bash-completion, if available, and avoid double-sourcing
 [[ $PS1 &&
   ! ${BASH_COMPLETION_VERSINFO:-} &&
   -f /usr/share/bash-completion/bash_completion ]] &&
   . /usr/share/bash-completion/bash_completion
-
-# Personalized configuration
-[ -f "$HOME/.bash_personal" ] && . "$HOME/.bash_personal"
-[ -f "$HOME/.bash_private" ] && . "$HOME/.bash_private"
-[ -f "$HOME/.bash_work" ] && . "$HOME/.bash_work"
 
 # Initialize starship only if the binary is available in the system
 if command -v starship >/dev/null 2>&1; then

@@ -1,34 +1,25 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+# "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
 $directory\
 $git_branch\
 $git_status\
-$cmd_duration\
+$line_break\
 $character"""
 
-# $python\
-# $hostname\
-# $username\
-# $git_state\
-# $line_break\
-# ${custom.toolbox}\
-
-# [custom.toolbox]
-# description = "Show username, hostname and toolbox container name"
-# when = "test -f /run/.toolboxenv"
-# command = "echo -n $USER@$HOSTNAME/$(grep '^name=' /run/.containerenv | cut -d'\"' -f2)"
-# style = "bright-black"
-# format = "[$output]($style) "
+# $username
+# $hostname
+# $git_state
+# $cmd_duration
+# $python
 
 [directory]
 style = "blue"
-truncation_length = 2
 
 [character]
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](green)"
+# vimcmd_symbol = "[❮](green)"
 
 [git_branch]
 format = "[$branch]($style)"
@@ -49,9 +40,9 @@ stashed = "≡"
 # format = '\([$state( $progress_current/$progress_total)]($style)\) '
 # style = "bright-black"
 
-[cmd_duration]
-format = "[$duration]($style) "
-style = "yellow"
+# [cmd_duration]
+# format = "[$duration]($style) "
+# style = "yellow"
 
 # [python]
 # format = "[$virtualenv]($style) "

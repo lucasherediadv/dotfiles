@@ -1,3 +1,0 @@
-#!/bin/sh
-mkdir -p "$HOME/.config/fish" 2>/dev/null
-ln -fs "$PWD/config.fish" "$HOME/.config/fish/config.fish"

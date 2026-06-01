@@ -1,6 +1,0 @@
-#!/bin/sh
-mkdir -p "$HOME/.config/nvim"
-for item in init.lua lua; do
-  [ -e "$HOME/.config/nvim/$item" ] && rm -rf "$HOME/.config/nvim/$item"
-  ln -s "$PWD/$item" "$HOME/.config/nvim/$item"
-done

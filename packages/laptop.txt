@@ -1,10 +1,8 @@
 base
 base-devel
 bash-completion
-bat
 brightnessctl
 expac
-eza
 firefox
 foot
 foot-terminfo
@@ -27,6 +25,7 @@ man-db
 man-pages
 noto-fonts-emoji
 opencode
+openssh
 pacman-contrib
 pacutils
 pass
@@ -37,7 +36,6 @@ rsync
 shellcheck
 shfmt
 slurp
-starship
 strace
 sudo
 sway

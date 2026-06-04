@@ -47,7 +47,7 @@ pathappend() {
   done
 } && export -f pathappend
 
-pathappend "$SCRIPTS" "$HOME/.local/bin" "$JAVA_HOME/bin"
+pathappend "$SCRIPTS" "$JAVA_HOME/bin"
 
 # ------------------------ Bash shell options ------------------------
 

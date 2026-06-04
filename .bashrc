@@ -10,14 +10,11 @@ esac
 
 # Pager
 export PAGER=less
-export BAT_THEME=gruvbox-dark
 export LESSHISTFILE=/dev/null
 
 # Editor
 export EDITOR=vim
 export VISUAL=vim
-# export EDITOR=nvim
-# export VISUAL=nvim
 
 # Repositories
 export REPOS=$HOME/repos
@@ -29,12 +26,6 @@ export DOTFILES="$GHREPOS/dotfiles"
 
 # Scripts
 export SCRIPTS="$GHREPOS/scripts/bin"
-
-# Go
-export CGO_ENABLED=0
-export GOPROXY=direct
-export GOPATH="$HOME/.local/share/go"
-export GOBIN="$HOME/.local/share/go/bin/"
 
 # Java
 export JAVA_HOME=/usr/lib/jvm/default
@@ -56,7 +47,7 @@ pathappend() {
   done
 } && export -f pathappend
 
-pathappend "$SCRIPTS" "$GOBIN" "$HOME/.local/bin" "$JAVA_HOME/bin"
+pathappend "$SCRIPTS" "$HOME/.local/bin" "$JAVA_HOME/bin"
 
 # ------------------------ Bash shell options ------------------------
 
@@ -69,21 +60,17 @@ shopt -s expand_aliases
 # ------------------------------ History -----------------------------
 
 set -o vi
-shopt -s cmdhist
 shopt -s histappend
 export HISTSIZE=500000
 export HISTFILESIZE=100000
-export PROMPT_COMMAND='history -a'
-export HISTCONTROL="erasedups:ignoreboth"
-export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
+export HISTCONTROL=ignoreboth
 
 # ------------------------------ Aliases -----------------------------
 
 unalias -a
 alias vi='$EDITOR'
 alias clear='clear -x'
-alias ls='eza --icons --group-directories-first -F'
-# alias ls='ls --color=auto --group-directories-first -F'
+alias ls='ls --color=auto --group-directories-first -F'
 
 # -------------------- Personalized configuration --------------------
 
@@ -99,7 +86,25 @@ alias ls='eza --icons --group-directories-first -F'
   -f /usr/share/bash-completion/bash_completion ]] &&
   . /usr/share/bash-completion/bash_completion
 
-# Initialize starship only if the binary is available in the system
-if command -v starship >/dev/null 2>&1; then
-  eval "$(starship init bash)"
-fi
+# ------------------------------ Prompt ------------------------------
+
+__ps1() {
+  local P='$' u='\[\e[33m\]' p='\[\e[34m\]' b='\[\e[36m\]'
+  local r='\[\e[31m\]' h='\[\e[34m\]' w='\[\e[35m\]' x='\[\e[0m\]' g='\[\e[38;2;90;82;76m\]'
+  local dir="${PWD##*/}" B
+
+  [[ $PWD = / ]] && dir=/
+  [[ $PWD = "$HOME" ]] && dir='~'
+
+  B=$(git branch --show-current 2>/dev/null)
+
+  if [[ -n $B ]]; then
+    [[ $dir = "$B" ]] && B=.
+    [[ $B = master || $B = main ]] && b=$r
+    B="$g($b$B$g)"
+  fi
+
+  PS1="$g$u\u$g@$h\h$g:$w$dir$B\n$g$p$P$x "
+}
+
+PROMPT_COMMAND='__ps1'

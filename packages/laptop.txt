@@ -2,6 +2,7 @@ acpi
 base
 base-devel
 bash-completion
+bind
 brightnessctl
 expac
 firefox

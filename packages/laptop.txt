@@ -25,6 +25,7 @@ lostfiles
 lsof
 man-db
 man-pages
+mkcert
 noto-fonts-emoji
 opencode
 openssh

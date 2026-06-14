@@ -1,3 +1,0 @@
-#!/bin/sh
-mkdir -p "$HOME/.config" 2>/dev/null
-ln -fs "$PWD/starship.toml" "$HOME/.config/starship.toml"

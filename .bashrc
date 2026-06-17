@@ -85,26 +85,3 @@ alias ls='ls --color=auto --group-directories-first -F'
   ! ${BASH_COMPLETION_VERSINFO:-} &&
   -f /usr/share/bash-completion/bash_completion ]] &&
   . /usr/share/bash-completion/bash_completion
-
-# ------------------------------ Prompt ------------------------------
-
-__ps1() {
-  local P='$' u='\[\e[33m\]' p='\[\e[34m\]' b='\[\e[36m\]'
-  local r='\[\e[31m\]' h='\[\e[34m\]' w='\[\e[35m\]' x='\[\e[0m\]' g='\[\e[38;2;90;82;76m\]'
-  local dir="${PWD##*/}" B
-
-  [[ $PWD = / ]] && dir=/
-  [[ $PWD = "$HOME" ]] && dir='~'
-
-  B=$(git branch --show-current 2>/dev/null)
-
-  if [[ -n $B ]]; then
-    [[ $dir = "$B" ]] && B=.
-    [[ $B = master || $B = main ]] && b=$r
-    B="$g($b$B$g)"
-  fi
-
-  PS1="$g$u\u$g@$h\h$g:$w$dir$B\n$g$p$P$x "
-}
-
-PROMPT_COMMAND='__ps1'

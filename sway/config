@@ -91,7 +91,7 @@ bindsym $mod+r mode "resize"
 #
 
 # Take a screenshot of a selected area and copy it to the clipboard
-bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Shift+s exec grimshot copy area
 
 # Special keys to adjust brightness via brightnessctl
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-

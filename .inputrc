@@ -1,5 +1,0 @@
-set editing-mode vi
-set show-all-if-ambiguous on
-set completion-ignore-case on
-set enable-bracketed-paste on
-set mark-symlinked-directories on

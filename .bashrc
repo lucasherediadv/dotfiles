@@ -45,6 +45,12 @@ pathappend() {
 
 pathappend "$SCRIPTS" "$JAVA_HOME/bin"
 
+# ----------------------------- Readline -----------------------------
+
+set -o vi
+bind 'set show-all-if-ambiguous on'
+bind 'set completion-ignore-case on'
+
 # ------------------------ Bash shell options ------------------------
 
 shopt -s dotglob

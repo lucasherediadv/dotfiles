@@ -26,9 +26,6 @@ export DOTFILES="$GHREPOS/dotfiles"
 # Scripts
 export SCRIPTS="$GHREPOS/scripts/bin"
 
-# Java
-export JAVA_HOME=/usr/lib/jvm/default
-
 # ------------------------------ $CDPATH -----------------------------
 
 export CDPATH=".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"

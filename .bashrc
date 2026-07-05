@@ -10,6 +10,7 @@ esac
 
 # Pager
 export PAGER=less
+export LESSHISTFILE=/dev/null/
 
 # Editor
 export EDITOR=vim

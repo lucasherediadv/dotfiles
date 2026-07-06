@@ -73,7 +73,7 @@ export HISTCONTROL=ignoreboth
 unalias -a
 alias vi='$EDITOR'
 alias clear='clear -x'
-alias ls='ls --color=auto --group-directories-first -F'
+alias ls='ls --color=auto --human-readable --group-directories-first -F'
 
 # -------------------- Personalized configuration --------------------
 

@@ -1,13 +1,5 @@
-# Logo key
-set $mod Mod4
-
-# Home row directions keys, like vi
-set $left h
-set $down j
-set $up k
-set $right l
-
 # Keybinds
+set $mod Mod4
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Return exec foot

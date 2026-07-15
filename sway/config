@@ -14,17 +14,8 @@ bindsym $mod+Return exec foot
 bindsym $mod+Shift+Return exec firefox
 bindsym $mod+Shift+e exec swaymsg exit
 
-# Output LVDS-1 (laptop panel)
-output LVDS-1 mode 1366x768@59.989Hz position 1920 0
-output LVDS-1 max_render_time 1
-output LVDS-1 subpixel rgb
-output LVDS-1 scale 1
-
 # Output HDMI-A-1 (Philips 241V8)
 output HDMI-A-1 mode 1920x1080@60Hz
-output HDMI-A-1 max_render_time 1
-output HDMI-A-1 subpixel rgb
-output HDMI-A-1 scale 1
 
 # Window style
 default_border none
@@ -64,47 +55,3 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
-
-#
-# Resizing containers
-#
-
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
-#
-# Utilities
-#
-
-# Take a screenshot of a selected area and copy it to the clipboard
-bindsym $mod+Shift+s exec grimshot copy area
-
-# Special keys to adjust brightness via brightnessctl
-bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-
-#
-# Auto launch applications
-#
-
-# exec foot tmux
-
-#
-# Source external configurations
-#
-
-include /etc/sway/config.d/*

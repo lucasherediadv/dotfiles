@@ -73,7 +73,7 @@ export HISTCONTROL=ignoreboth
 unalias -a
 alias vi='$EDITOR'
 alias clear='clear -x'
-alias ls='ls --color=auto --human-readable --group-directories-first -F'
+alias ls='eza --icons --group-directories-first -F'
 
 # -------------------- Personalized configuration --------------------
 
@@ -88,3 +88,6 @@ alias ls='ls --color=auto --human-readable --group-directories-first -F'
   ! ${BASH_COMPLETION_VERSINFO:-} &&
   -f /usr/share/bash-completion/bash_completion ]] &&
   . /usr/share/bash-completion/bash_completion
+
+# Starship prompt initialization
+eval "$(starship init bash)"

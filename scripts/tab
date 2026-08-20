@@ -1,0 +1,2 @@
+#!/bin/sh
+exec expand --tab=2

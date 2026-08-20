@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ -n "$1" ]; then
+  exec gh issue view --comments "$@"
+fi
+
+exec gh issue create

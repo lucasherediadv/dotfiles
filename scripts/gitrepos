@@ -1,0 +1,6 @@
+#!/bin/sh
+find . -name .git -type d -prune | while IFS= read -r d; do
+  repo_path="${d#./}"
+  repo_path="${repo_path%/.git}"
+  echo "$repo_path"
+done

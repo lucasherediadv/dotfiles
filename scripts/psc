@@ -1,0 +1,4 @@
+#!/bin/sh
+# https://0pointer.de/blog/projects/systemd-for-admins-2.html
+# Which service owns which processes?
+exec ps xawf -eo pid,user,cgroup,args

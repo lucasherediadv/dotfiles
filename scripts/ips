@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+getnics() {
+  while IFS= read -r line; do
+    echo "${line%% *}"
+  done < <(ip --br -4 a)
+
+}
+
+# complete -W "$(ips)" ips
+if [ -z "$1" ]; then
+  getnics
+  exit 0
+fi
+
+for i in "$@"; do
+  m=$(ip --br -4 a s "$i")
+  m="${m%\/*}"
+  echo "${m##* }"
+done

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+IFS=$'\n'
+mapfile -t f < <(ls -1d --color=never -tr -- "${1:-.}"/* 2>/dev/null)
+if [ "${#f[@]}" -gt 0 ]; then
+  echo "${f[-1]}"
+fi

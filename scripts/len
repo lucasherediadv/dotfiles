@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+
+# Read all lines from standard input
+my @lines = <STDIN>;
+
+# Sort the array of lines. The 'sort' function uses the 'spaceship operator'
+# (<=>) to compare the lengths of the two lines, represented by special
+# variables $a and $b. This sorts the lines from shortest to longest.
+@lines = sort { length($a) <=> length($b) } @lines;
+
+# Print the sorted lines to standard output.
+print @lines;

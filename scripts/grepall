@@ -1,0 +1,10 @@
+#!/bin/sh
+if [ -z "$1" ]; then
+  echo "Usage: grepall <pattern>" >&2
+  exit 1
+fi
+
+find . \
+  -name '.git' \
+  -prune -o \
+  -exec grep -i --color=always "$1" {} /dev/null \; 2>/dev/null

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# This script reliably compares the differences between two YAML files
+# even with differeing nested values (useful for Helm values files
+# comparisons and more). Note that the resulting diff CANNOT be reliably
+# used as a patch against the YAML file since the comments are stripped
+# during the comparison.
+
+if ! command -v yq >/dev/null 2>&1; then
+  echo "Error: missing yq command" >&2
+  exit 1
+fi
+
+if [ "$#" -ne 2 ]; then
+  echo "Usage: yqdiff <file1> <file2>" >&2
+  exit 1
+fi
+
+if [ ! -f "$1" ]; then
+  echo "Error: file '$1' does not exist or is not a regular file." >&2
+  exit 1
+fi
+
+if [ ! -f "$2" ]; then
+  echo "Error: file '$2' does not exist or is not a regular file." >&2
+  exit 1
+fi
+
+exec diff <(yq 'sort_keys(..) | ... comments=""' -P "$1") <(yq 'sort_keys(..) | ... comments=""' -P "$2")

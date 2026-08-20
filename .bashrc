@@ -73,7 +73,7 @@ export HISTCONTROL=ignoreboth
 unalias -a
 alias vi='$EDITOR'
 alias clear='clear -x'
-alias ls='eza --icons --group-directories-first -F'
+alias ls='eza --icons --group-directories-first --classify=auto'
 
 # -------------------- Personalized configuration --------------------
 

@@ -25,7 +25,7 @@ export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 
 # Scripts
-export SCRIPTS="$GHREPOS/scripts/bin"
+export SCRIPTS="$DOTFILES/scripts"
 
 # ------------------------------ $CDPATH -----------------------------
 

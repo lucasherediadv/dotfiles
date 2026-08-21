@@ -22,7 +22,7 @@ if status is-interactive
     alias clear "clear -x"
     alias fishies asciiquarium
     alias pstree "pstree -UC age"
-    alias tree "tree -a -C -I .git"
+    alias tree "tree --dirsfirst -a -C -I .git"
     alias todo "$EDITOR $HOME/TODO.md"
     alias cat "bat --theme-dark=gruvbox-dark"
 

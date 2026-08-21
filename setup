@@ -5,7 +5,7 @@ ln -sf "$PWD/.vimrc" "$HOME/.vimrc"
 ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
 ln -sf "$PWD/.bash_profile" "$HOME/.bash_profile"
 
-for i in fish foot git nvim starship sway tmux; do
+for i in fish foot gh git nvim starship sway tmux; do
   cd $i && ./setup
   cd -
 done

@@ -1,0 +1,13 @@
+version: 1
+pager: less
+editor: nvim
+browser: firefox
+git_protocol: https
+
+aliases:
+    co: pr checkout
+    web: repo view --web
+    pr-create: pr create --web
+    myprs: pr list --author '@me'
+    issues: issue list --assignee '@me'
+    status: gh pr status && echo "" && gh issue list --limit 5

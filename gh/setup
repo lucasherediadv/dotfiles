@@ -1,0 +1,3 @@
+#!/bin/sh
+mkdir -p "$HOME/.config/gh" 2>/dev/null
+ln -fs "$PWD/config.yml" "$HOME/.config/gh/config.yml"

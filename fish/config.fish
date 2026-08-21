@@ -1,8 +1,19 @@
 set -g fish_greeting
 
 set -gx PAGER less
+set -gx LESSHISTFILE /dev/null/
+
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+
+set -gx REPOS "$HOME/repos"
+set -gx GITUSER lucasherediadv
+set -gx GHREPOS "$REPOS/github.com/$GITUSER"
+
+set -gx DOTFILES "$GHREPOS/dotfiles"
+set -gx SCRIPTS "$DOTFILES/scripts/"
+
+set -gx CDPATH ".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
 
 if status is-interactive
     fish_vi_key_bindings
@@ -47,3 +58,5 @@ if status is-interactive
     fzf --fish | source
     starship init fish | source
 end
+
+fish_add_path $SCRIPTS

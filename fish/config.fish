@@ -19,6 +19,7 @@ if status is-interactive
     fish_vi_key_bindings
 
     alias vi "$EDITOR"
+    alias c "clear -x"
     alias clear "clear -x"
     alias fishies asciiquarium
     alias pstree "pstree -UC age"
@@ -47,6 +48,7 @@ if status is-interactive
     abbr --add df "df --human-readable"
     abbr --add du "du --human-readable"
 
+    abbr --add lg lazygit
     abbr --add gp "git pull"
     abbr --add gs "git status"
 

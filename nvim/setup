@@ -1,0 +1,8 @@
+#!/bin/sh
+mkdir -p "$HOME/.config/nvim" 2>/dev/null
+for item in init.lua lazy-lock.json lazyvim.json lua stylua.toml .neoconf.json .gitignore LICENSE README.md; do
+  if [ -e "$item" ]; then
+    rm -rf "$HOME/.config/nvim/$item"
+    ln -fns "$PWD/$item" "$HOME/.config/nvim/$item"
+  fi
+done

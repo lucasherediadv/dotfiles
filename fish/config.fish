@@ -22,10 +22,6 @@ set -gx CDPATH ".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
 if status is-interactive
     fish_vi_key_bindings
 
-    alias v "$EDITOR"
-    alias vi "$EDITOR"
-    alias c "clear -x"
-    alias clear "clear -x"
     alias fishies asciiquarium
     alias pstree "pstree -UC age"
     alias tree "tree --dirsfirst -a -C -I .git"
@@ -37,7 +33,11 @@ if status is-interactive
     alias ll "eza --long --icons --group-directories-first --classify=auto"
     alias lla "eza --long --all --icons --group-directories-first --classify=auto"
 
-    alias fp "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+    abbr --add c "clear -x"
+    abbr --add clear "clear -x"
+
+    abbr --add v "$EDITOR"
+    abbr --add vi "$EDITOR"
 
     abbr --add cp "cp --interactive"
     abbr --add mv "mv --interactive"

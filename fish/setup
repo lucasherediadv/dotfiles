@@ -1,4 +1,8 @@
 #!/bin/sh
 mkdir -p "$HOME/.config/fish/functions" 2>/dev/null
 ln -fs "$PWD/config.fish" "$HOME/.config/fish/config.fish"
-ln -fs "$PWD/functions/clone.fish" "$HOME/.config/fish/functions/clone.fish"
+
+for file in "$PWD/functions/"*; do
+  [ -f "$file" ] || continue
+  ln -fs "$file" "$HOME/.config/fish/functions/$(basename "$file")"
+done

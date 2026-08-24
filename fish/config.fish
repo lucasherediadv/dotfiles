@@ -33,11 +33,17 @@ if status is-interactive
     alias ll "eza --long --icons --group-directories-first --classify=auto"
     alias lla "eza --long --all --icons --group-directories-first --classify=auto"
 
+    abbr --add reload "exec fish --login"
+
     abbr --add c "clear -x"
     abbr --add clear "clear -x"
 
     abbr --add v "$EDITOR"
     abbr --add vi "$EDITOR"
+
+    abbr -a .. "cd ./../"
+    abbr -a ... "cd ./../../"
+    abbr -a .... "cd ./../../../"
 
     abbr --add cp "cp --interactive"
     abbr --add mv "mv --interactive"
@@ -54,9 +60,14 @@ if status is-interactive
     abbr --add df "df --human-readable"
     abbr --add du "du --human-readable"
 
+    abbr --add g git
     abbr --add lg lazygit
     abbr --add gp "git pull"
+    abbr --add gd "git diff"
+    abbr --add gps "git push"
     abbr --add gs "git status"
+    abbr --add gaa "git add --all"
+    abbr --add gds "git diff --staged"
 
     abbr --add repos "cd $REPOS"
     abbr --add ghrepos "cd $GHREPOS"

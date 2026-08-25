@@ -1,3 +1,9 @@
 #!/bin/sh
 mkdir -p "$HOME/.config/sway" 2>/dev/null
-ln -fs "$PWD/config" "$HOME/.config/sway/config"
+
+HOSTNAME=$(cat /etc/hostname)
+if [ -f "$PWD/config.$HOSTNAME" ]; then
+  ln -fs "$PWD/config.$HOSTNAME" "$HOME/.config/sway/config"
+else
+  echo "Warning: no sway config for hostname '$HOSTNAME'" >&2
+fi

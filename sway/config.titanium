@@ -91,7 +91,10 @@ bindsym $mod+Shift+S exec $screenshot --notify copy area
 # Auto launch applications
 #
 
-exec foot tmux
+exec swaymsg "workspace 1; exec foot -e tmux"
+exec swaymsg "workspace 2; exec firefox"
+exec swaymsg "workspace 3; exec foot -e tmux new-session btm"
+exec swaymsg "workspace 1"
 
 #
 # Source external dependencies

@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+DIR="$(cd "$(dirname "$0")" && pwd)"
+
+if [ -f /etc/hostname ]; then
+  HOST=$(cat /etc/hostname)
+else
+  HOST=$(uname -n)
+fi
+
+if [ -f "$DIR/$HOST.txt" ]; then
+  sudo pacman -S --needed - < "$DIR/$HOST.txt"
+else
+  echo "Error: no package list for host '$HOST' ($DIR/$HOST.txt)" >&2
+  exit 1
+fi

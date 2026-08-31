@@ -70,7 +70,8 @@ if status is-interactive
     abbr --add gds "git diff --staged"
 
     abbr --add repos "cd $REPOS"
-    abbr --add ghrepos "cd $GHREPOS"
+    abbr --add ghrepos "cd $REPOS/github.com/"
+    abbr --add myrepos "cd $GHREPOS"
     abbr --add scripts "cd $SCRIPTS"
     abbr --add dotfiles "cd $DOTFILES"
 

@@ -25,6 +25,7 @@ if status is-interactive
     alias fishies asciiquarium
     alias pstree "pstree -UC age"
     alias tree "tree --dirsfirst -a -C -I .git"
+    alias lt "tree --dirsfirst -a -C -I .git -L 1"
     alias todo "$EDITOR $HOME/TODO.md"
     alias cat "bat --theme-dark=gruvbox-dark"
 

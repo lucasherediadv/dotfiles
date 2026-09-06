@@ -5,6 +5,7 @@ browser: firefox
 git_protocol: https
 
 aliases:
+    ls: repo list
     co: pr checkout
     web: repo view --web
     pr-create: pr create --web

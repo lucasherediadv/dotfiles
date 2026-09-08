@@ -1,0 +1,10 @@
+tt.*
+data
+debug
+foo.*
+*.log
+.repro
+.tests
+doc/tags
+lazyvim.json
+lazy-lock.json

@@ -7,15 +7,20 @@ set -gx LESS "-R -i -F -X --mouse --wheel-lines=3"
 set -gx MANROFFOPT -c
 set -gx MANPAGER "sh -c 'col -bx | bat --theme-dark=gruvbox-dark -l man -p'"
 
+set -gx FZF_DEFAULT_OPTS --reverse
+
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+
+set -gx BROWSER firefox
 
 set -gx REPOS "$HOME/repos"
 set -gx GITUSER lucasherediadv
 set -gx GHREPOS "$REPOS/github.com/$GITUSER"
 
 set -gx DOTFILES "$GHREPOS/dotfiles"
-set -gx SCRIPTS "$DOTFILES/scripts/"
+set -gx SCRIPTS "$DOTFILES/scripts"
+set -gx NOTES "$GHREPOS/notes"
 
 set -gx CDPATH ".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
 
@@ -34,7 +39,14 @@ if status is-interactive
     alias ll "eza --long --icons --group-directories-first --classify=auto"
     alias lla "eza --long --all --icons --group-directories-first --classify=auto"
 
+    abbr --add syu "sudo pacman -Syu --noconfirm"
+
+    abbr --add 0 "cd $HOME/0"
+
     abbr --add reload "exec fish --login"
+
+    abbr --add e exit
+    abbr --add t tmux
 
     abbr --add c "clear -x"
     abbr --add clear "clear -x"
@@ -46,11 +58,10 @@ if status is-interactive
     abbr -a ... "cd ./../../"
     abbr -a .... "cd ./../../../"
 
-    abbr --add cp "cp --interactive"
-    abbr --add mv "mv --interactive"
-    abbr --add ln "ln --interactive"
-    abbr --add mv "mv --parents --verbose"
-    abbr --add rm "rm --interactive=always"
+    abbr --add cp "cp --verbose"
+    abbr --add ln "ln --verbose"
+    abbr --add mv "mv --verbose"
+    abbr --add rm "rm --verbose"
 
     abbr --add ip "ip --color=auto"
     abbr --add diff "diff --color=auto"
@@ -75,6 +86,9 @@ if status is-interactive
     abbr --add myrepos "cd $GHREPOS"
     abbr --add scripts "cd $SCRIPTS"
     abbr --add dotfiles "cd $DOTFILES"
+
+    abbr --add notes "cd $NOTES"
+    abbr --add n "$EDITOR $NOTES"
 
     fzf --fish | source
     starship init fish | source

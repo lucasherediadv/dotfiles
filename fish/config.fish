@@ -62,6 +62,7 @@ if status is-interactive
     abbr --add ln "ln --verbose"
     abbr --add mv "mv --verbose"
     abbr --add rm "rm --verbose"
+    abbr --add rmdir "rmdir --verbose"
 
     abbr --add ip "ip --color=auto"
     abbr --add diff "diff --color=auto"

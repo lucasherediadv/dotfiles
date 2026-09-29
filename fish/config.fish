@@ -73,6 +73,8 @@ if status is-interactive
     abbr --add df "df --human-readable"
     abbr --add du "du --human-readable"
 
+    abbr --add pc "pass show --clip"
+
     abbr --add g git
     abbr --add lg lazygit
     abbr --add gp "git pull"

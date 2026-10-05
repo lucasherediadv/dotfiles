@@ -3,10 +3,10 @@ Hostname-specific `pacman` package lists.
 ## Restore packages
 
 ```sh
-sudo pacman -S --needed - < helium.txt
+sudo pacman -S --needed - < hostname.txt
 ```
 
-Replace `helium.txt` with the appropriate hostname file.
+Replace `hostname.txt` with the appropriate hostname file.
 
 ## Save current packages
 

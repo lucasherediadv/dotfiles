@@ -82,7 +82,23 @@ bindsym $mod+Shift+S exec $screenshot --notify copy area
 # Auto launch applications
 #
 
-exec foot tmux
+exec foot tmux new-session
+
+# Gaps and Borders
+gaps inner 4
+gaps outer 0
+default_border pixel 1
+
+client.focused #8d836a #8d836a #8d836a #8d836a #8d836a
+client.focused_inactive #8d836a #8d836a #8d836a #8d836a #8d836a
+client.unfocused #8d836a #8d836a #8d836a #8d836a #8d836a
+client.urgent #8d836a #8d836a #8d836a #8d836a #8d836a
+
+bar {
+    swaybar_command waybar
+}
+
+output * bg ~/repos/github.com/lucasherediadv/dotfiles/sway/wallpaper.png fill
 
 #
 # Source external dependencies

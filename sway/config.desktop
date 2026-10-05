@@ -12,7 +12,7 @@ set $down j
 set $right l
 
 # Preferred terminal emulator
-set $term foot -e tmux new-session
+set $term foot tmux new-session
 
 # Screenshot utility
 set $screenshot grimshot

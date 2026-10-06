@@ -1,0 +1,70 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 30,
+  "margin-top": 0,
+  "margin-left": 4,
+  "margin-right": 4,
+  "margin-bottom": 4,
+  "modules-left": [
+    "sway/workspaces",
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    /* "temperature", */
+    /* "battery", */
+    "user",
+    "clock"
+  ],
+  /* CPU */
+  "cpu": {
+    "interval": 5,
+    "format": "CPU {usage}%",
+    "tooltip": true,
+    "states": {
+      "warning": 80,
+      "critical": 90
+    }
+  },
+  /* Memory */
+  "memory": {
+    "interval": 5,
+    "format": "MEM {percentage}%",
+    "tooltip": true,
+    "states": {
+      "warning": 75,
+      "critical": 90
+    }
+  },
+  /* Uptime. The default format would print the username, hence the override. */
+  "user": {
+    "interval": 30,
+    "format": "UP {work_H}:{work_M}"
+  },
+  /* CPU package temp. Array = first valid path wins, so it survives
+     hwmon/thermal-zone renumbering across reboots. */
+  "temperature": {
+    "interval": 10,
+    "format": "TEMP {temperatureC}°C",
+    "hwmon-path": [
+      "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input",
+      "/sys/class/thermal/thermal_zone2/temp"
+    ],
+    "warning-threshold": 75,
+    "critical-threshold": 90,
+    "tooltip": true
+  },
+  /* Battery. Pinned to BAT1 so autodetect can't pick a different cell if
+     another power_supply entry ever appears. Time-remaining stays in the tooltip. */
+  "battery": {
+    "interval": 30,
+    "bat": "BAT1",
+    "format": "BAT {capacity}%",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "tooltip": true
+  }
+}

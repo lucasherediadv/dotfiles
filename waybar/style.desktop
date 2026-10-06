@@ -1,0 +1,74 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #282828;
+    color: #a89984;
+    /* 1px border around the entire bar to match Sway window borders */
+    border: 1px solid #8d836a; 
+}
+
+#workspaces button {
+    padding: 0 6px;
+    background: transparent;
+    color: #a89984; /* Inactive workspace color */
+    border: none;
+}
+
+#workspaces button.focused {
+    color: #ebdbb2; /* Active workspace color (off-white) */
+}
+
+#workspaces button.urgent {
+    color: #fb4934; /* Urgent workspace color */
+}
+
+#workspaces button:hover {
+    background: transparent;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#cpu,
+#memory,
+#temperature,
+#battery,
+#user {
+  padding: 6px;
+}
+
+/* Matches the gruvbox accents already used for urgent workspaces */
+#cpu.warning,
+#memory.warning {
+  color: #fabd2f; /* Elevated usage (yellow) */
+}
+
+#cpu.critical,
+#memory.critical {
+  color: #fb4934; /* Critical usage (red) */
+}
+
+#temperature.warning {
+  color: #fabd2f; /* Getting warm (yellow) */
+}
+
+#temperature.critical {
+  color: #fb4934; /* Too hot (red) */
+}
+
+#battery.warning {
+  color: #fabd2f; /* Battery getting low (yellow) */
+}
+
+#battery.critical {
+  color: #fb4934; /* Battery nearly empty (red) */
+}
+
+#clock {
+  padding: 6px;
+}

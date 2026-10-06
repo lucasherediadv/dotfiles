@@ -1,0 +1,15 @@
+#!/bin/sh
+mkdir -p "$HOME/.config/waybar" 2>/dev/null
+
+HOSTNAME=$(cat /etc/hostname)
+if [ -f "$PWD/config.$HOSTNAME" ]; then
+  ln -fs "$PWD/config.$HOSTNAME" "$HOME/.config/waybar/config"
+else
+  echo "Warning: no waybar config for hostname '$HOSTNAME'" >&2
+fi
+
+if [ -f "$PWD/style.$HOSTNAME" ]; then
+  ln -fs "$PWD/style.$HOSTNAME" "$HOME/.config/waybar/style.css"
+else
+  echo "Warning: no waybar style for hostname '$HOSTNAME'" >&2
+fi

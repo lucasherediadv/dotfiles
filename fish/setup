@@ -1,8 +1,12 @@
 #!/bin/sh
-mkdir -p "$HOME/.config/fish/functions" 2>/dev/null
-ln -fs "$PWD/config.fish" "$HOME/.config/fish/config.fish"
+set -eu
 
-for file in "$PWD/functions/"*; do
+repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}/fish
+mkdir -p "$config_dir/functions"
+ln -fs "$repo_dir/config.fish" "$config_dir/config.fish"
+
+for file in "$repo_dir/functions/"*; do
   [ -f "$file" ] || continue
-  ln -fs "$file" "$HOME/.config/fish/functions/$(basename "$file")"
+  ln -fs "$file" "$config_dir/functions/$(basename "$file")"
 done

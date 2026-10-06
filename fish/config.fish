@@ -1,7 +1,7 @@
 set -g fish_greeting
 
 set -gx PAGER less
-set -gx LESSHISTFILE /dev/null/
+set -gx LESSHISTFILE /dev/null
 set -gx LESS "-R -i -F -X --mouse --wheel-lines=3"
 
 set -gx MANROFFOPT -c
@@ -27,17 +27,27 @@ set -gx CDPATH ".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
 if status is-interactive
     fish_vi_key_bindings
 
-    alias fishies asciiquarium
-    alias pstree "pstree -UC age"
-    alias tree "tree --dirsfirst -a -C -I .git"
-    alias lt "tree --dirsfirst -a -C -I .git -L 1"
+    if type -q asciiquarium
+        alias fishies asciiquarium
+    end
+    if type -q pstree
+        alias pstree "pstree -UC age"
+    end
+    if type -q tree
+        alias tree "tree --dirsfirst -a -C -I .git"
+        alias lt "tree --dirsfirst -a -C -I .git -L 1"
+    end
     alias todo "$EDITOR $HOME/TODO.md"
-    alias cat "bat --theme-dark=gruvbox-dark"
+    if type -q bat
+        alias cat "bat --theme-dark=gruvbox-dark"
+    end
 
-    alias ls "eza --icons --group-directories-first --classify=auto"
-    alias la "eza --all --icons --group-directories-first --classify=auto"
-    alias ll "eza --long --icons --group-directories-first --classify=auto"
-    alias lla "eza --long --all --icons --group-directories-first --classify=auto"
+    if type -q eza
+        alias ls "eza --icons --group-directories-first --classify=auto"
+        alias la "eza --all --icons --group-directories-first --classify=auto"
+        alias ll "eza --long --icons --group-directories-first --classify=auto"
+        alias lla "eza --long --all --icons --group-directories-first --classify=auto"
+    end
 
     abbr --add syu "sudo pacman -Syu --noconfirm"
 
@@ -67,16 +77,19 @@ if status is-interactive
     abbr --add ip "ip --color=auto"
     abbr --add diff "diff --color=auto"
     abbr --add grep "grep --color=auto"
-    abbr --add diff "diff --color=auto"
 
     abbr --add free "free --mega --human"
     abbr --add df "df --human-readable"
     abbr --add du "du --human-readable"
 
-    abbr --add pc "pass show --clip"
+    if type -q pass
+        abbr --add pc "pass show --clip"
+    end
 
     abbr --add g git
-    abbr --add lg lazygit
+    if type -q lazygit
+        abbr --add lg lazygit
+    end
     abbr --add gp "git pull"
     abbr --add gd "git diff"
     abbr --add gps "git push"
@@ -93,8 +106,12 @@ if status is-interactive
     abbr --add notes "cd $NOTES"
     abbr --add n "$EDITOR $NOTES"
 
-    fzf --fish | source
-    starship init fish | source
+    if type -q fzf
+        fzf --fish | source
+    end
+    if type -q starship
+        starship init fish | source
+    end
 end
 
-fish_add_path $SCRIPTS $HOME/.local/bin
+fish_add_path --path "$SCRIPTS" "$HOME/.local/bin"

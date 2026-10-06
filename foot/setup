@@ -1,3 +1,7 @@
 #!/bin/sh
-mkdir -p "$HOME/.config/foot" 2>/dev/null
-ln -fs "$PWD/foot.ini" "$HOME/.config/foot/foot.ini"
+set -eu
+
+repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}/foot
+mkdir -p "$config_dir"
+ln -fs "$repo_dir/foot.ini" "$config_dir/foot.ini"

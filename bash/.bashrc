@@ -10,7 +10,7 @@ esac
 
 # Pager
 export PAGER=less
-export LESSHISTFILE=/dev/null/
+export LESSHISTFILE=/dev/null
 
 # Editor
 export EDITOR=vim
@@ -44,7 +44,10 @@ pathappend() {
   done
 } && export -f pathappend
 
-pathappend "$SCRIPTS" "$JAVA_HOME/bin"
+pathappend "$SCRIPTS"
+if [[ -n ${JAVA_HOME:-} && -d "$JAVA_HOME/bin" ]]; then
+  pathappend "$JAVA_HOME/bin"
+fi
 
 # ----------------------------- Readline -----------------------------
 
@@ -62,7 +65,6 @@ shopt -s expand_aliases
 
 # ------------------------------ History -----------------------------
 
-set -o vi
 shopt -s histappend
 export HISTSIZE=500000
 export HISTFILESIZE=100000
@@ -90,4 +92,6 @@ alias ls='eza --icons --group-directories-first --classify=auto'
   . /usr/share/bash-completion/bash_completion
 
 # Starship prompt initialization
-eval "$(starship init bash)"
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init bash)"
+fi

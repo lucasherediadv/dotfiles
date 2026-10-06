@@ -1,2 +1,21 @@
 #!/bin/sh
-exec curl -s https://zenquotes.io/api/random | jq -r '.[0] | "\(.q) - \(.a)"'
+set -eu
+
+command -v curl >/dev/null 2>&1 || {
+  echo "Error: missing curl command" >&2
+  exit 127
+}
+command -v jq >/dev/null 2>&1 || {
+  echo "Error: missing jq command" >&2
+  exit 127
+}
+
+response=$(mktemp "${TMPDIR:-/tmp}/quotes.XXXXXX")
+trap 'rm -f "$response"' EXIT HUP INT TERM
+
+curl --fail-with-body --silent --show-error --location \
+  --connect-timeout 5 --max-time 15 \
+  --output "$response" \
+  https://zenquotes.io/api/random
+
+jq -e -r '.[0] | select(.q and .a) | "\(.q) - \(.a)"' "$response"

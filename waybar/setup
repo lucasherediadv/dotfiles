@@ -1,15 +1,20 @@
 #!/bin/sh
-mkdir -p "$HOME/.config/waybar" 2>/dev/null
+set -eu
 
-HOSTNAME=$(cat /etc/hostname)
-if [ -f "$PWD/config.$HOSTNAME" ]; then
-  ln -fs "$PWD/config.$HOSTNAME" "$HOME/.config/waybar/config"
+repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}/waybar
+hostname=$(cat /etc/hostname)
+mkdir -p "$config_dir"
+if [ -f "$repo_dir/config.$hostname" ]; then
+  ln -fs "$repo_dir/config.$hostname" "$config_dir/config"
 else
-  echo "Warning: no waybar config for hostname '$HOSTNAME'" >&2
+  echo "Warning: no waybar config for hostname '$hostname'" >&2
+  exit 1
 fi
 
-if [ -f "$PWD/style.$HOSTNAME" ]; then
-  ln -fs "$PWD/style.$HOSTNAME" "$HOME/.config/waybar/style.css"
+if [ -f "$repo_dir/style.$hostname" ]; then
+  ln -fs "$repo_dir/style.$hostname" "$config_dir/style.css"
 else
-  echo "Warning: no waybar style for hostname '$HOSTNAME'" >&2
+  echo "Warning: no waybar style for hostname '$hostname'" >&2
+  exit 1
 fi

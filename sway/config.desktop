@@ -22,7 +22,7 @@ set $screenshot grimshot
 #
 
 # Wallpaper
-output * bg ~/repos/github.com/lucasherediadv/dotfiles/sway/wallpaper.png fill
+output * bg ~/.config/sway/wallpaper.png fill
 
 # Outputs
 output DP-1 mode 1440x900@60Hz position 1920,0

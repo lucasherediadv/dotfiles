@@ -1,9 +1,14 @@
 #!/bin/sh
-mkdir -p "$HOME/.config/sway" 2>/dev/null
+set -eu
 
-HOSTNAME=$(cat /etc/hostname)
-if [ -f "$PWD/config.$HOSTNAME" ]; then
-  ln -fs "$PWD/config.$HOSTNAME" "$HOME/.config/sway/config"
+repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}/sway
+hostname=$(cat /etc/hostname)
+mkdir -p "$config_dir"
+if [ -f "$repo_dir/config.$hostname" ]; then
+  ln -fs "$repo_dir/config.$hostname" "$config_dir/config"
+  ln -fs "$repo_dir/wallpaper.png" "$config_dir/wallpaper.png"
 else
-  echo "Warning: no sway config for hostname '$HOSTNAME'" >&2
+  echo "Warning: no sway config for hostname '$hostname'" >&2
+  exit 1
 fi

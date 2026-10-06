@@ -1,2 +1,9 @@
 #!/bin/bash
-exec $EDITOR $DOTFILES
+set -euo pipefail
+
+editor=${EDITOR:-vi}
+command -v "$editor" >/dev/null 2>&1 || {
+  printf 'Error: editor not found: %s\n' "$editor" >&2
+  exit 127
+}
+exec "$editor" "$DOTFILES"

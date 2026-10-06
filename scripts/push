@@ -1,5 +1,12 @@
 #!/bin/bash
-read -rp "Enter commit message: " commitmessage
-git add .
+set -euo pipefail
+
+read -r -p "Enter commit message: " commitmessage
+if [[ -z "$commitmessage" ]]; then
+  echo "Error: commit message cannot be empty." >&2
+  exit 2
+fi
+
+git add --all
 git commit -m "$commitmessage"
 git push

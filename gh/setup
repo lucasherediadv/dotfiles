@@ -1,3 +1,7 @@
 #!/bin/sh
-mkdir -p "$HOME/.config/gh" 2>/dev/null
-ln -fs "$PWD/config.yml" "$HOME/.config/gh/config.yml"
+set -eu
+
+repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}/gh
+mkdir -p "$config_dir"
+ln -fs "$repo_dir/config.yml" "$config_dir/config.yml"

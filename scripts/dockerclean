@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 command -v docker >/dev/null 2>&1 || {
   echo "This script requires docker"
   exit 1
 }
 
-all=$(docker ps -aq)
+mapfile -t containers < <(docker ps -aq)
 
-if [[ -z $all ]]; then
+if ((${#containers[@]} == 0)); then
   echo "No containers found."
-  exit
+  exit 0
 fi
 
-docker rm "$all"
+docker rm -- "${containers[@]}"

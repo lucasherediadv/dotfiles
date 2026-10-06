@@ -1,2 +1,10 @@
 #!/bin/sh
-exec cat /tmp/buf
+set -eu
+
+buffer_dir=${XDG_RUNTIME_DIR:-"${HOME:-/tmp}/.cache"}/dotfiles
+buf=$buffer_dir/buf
+if [ ! -r "$buf" ]; then
+  echo "Error: no clipboard buffer available." >&2
+  exit 1
+fi
+exec cat "$buf"

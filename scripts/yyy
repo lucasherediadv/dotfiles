@@ -1,9 +1,18 @@
 #!/bin/sh
-: >/tmp/buf
+set -eu
+
+buffer_dir=${XDG_RUNTIME_DIR:-"${HOME:-/tmp}/.cache"}/dotfiles
+mkdir -p "$buffer_dir"
+chmod 700 "$buffer_dir"
+buf=$buffer_dir/buf
+: >"$buf"
+chmod 600 "$buf"
 
 while IFS= read -r line; do
-  echo "$line" >>/tmp/buf
-  echo "$line"
+  printf '%s\n' "$line" >>"$buf"
+  printf '%s\n' "$line"
 done
 
-command -v wl-copy >/dev/null 2>&1 && wl-copy </tmp/buf
+if command -v wl-copy >/dev/null 2>&1; then
+  wl-copy <"$buf"
+fi

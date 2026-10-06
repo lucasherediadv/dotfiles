@@ -1,2 +1,12 @@
 #!/bin/sh
-strace -f -vvv -s 4096 -o strace.out "$1"
+set -eu
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: mytrace command" >&2
+  exit 2
+fi
+command -v strace >/dev/null 2>&1 || {
+  echo "Error: missing strace command" >&2
+  exit 127
+}
+exec strace -f -vvv -s 4096 -o strace.out -- "$1"

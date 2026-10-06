@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
-IFS=$'\n'
-mapfile -t f < <(ls -1d --color=never -tr -- "${1:-.}"/* 2>/dev/null)
-if [ "${#f[@]}" -gt 0 ]; then
-  echo "${f[-1]}"
+set -euo pipefail
+
+directory=${1:-.}
+if [[ ! -d "$directory" ]]; then
+  printf 'Error: not a directory: %s\n' "$directory" >&2
+  exit 1
+fi
+
+latest=$(
+  find "$directory" -mindepth 1 -maxdepth 1 -printf '%T@\t%p\0' |
+    sort -zn |
+    tail -z -n 1 |
+    cut -z -f2-
+)
+if [[ -n "$latest" ]]; then
+  printf '%s\n' "$latest"
 fi

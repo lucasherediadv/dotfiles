@@ -21,7 +21,7 @@
   "cpu": {
     "interval": 5,
     "format": "CPU {usage}%",
-    "tooltip": true,
+    "tooltip": false,
     "states": {
       "warning": 80,
       "critical": 90
@@ -31,7 +31,7 @@
   "memory": {
     "interval": 5,
     "format": "MEM {percentage}%",
-    "tooltip": true,
+    "tooltip": false,
     "states": {
       "warning": 75,
       "critical": 90
@@ -40,6 +40,8 @@
   /* Uptime. The default format would print the username, hence the override. */
   "user": {
     "interval": 30,
+    "tooltip": false,
+    "open-on-click": true,
     "format": "UP {work_H}:{work_M}"
   },
   "temperature": {
@@ -57,5 +59,8 @@
       "critical": 15
     },
     "tooltip": true
+  },
+  "clock": {
+    "tooltip": false
   }
 }

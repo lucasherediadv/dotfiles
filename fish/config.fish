@@ -115,3 +115,7 @@ if status is-interactive
 end
 
 fish_add_path --path "$SCRIPTS" "$HOME/.local/bin"
+
+for local_config in $HOME/.fish_personal.fish $HOME/.fish_private.fish $HOME/.fish_work.fish
+    test -f $local_config; and source $local_config
+end

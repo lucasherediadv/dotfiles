@@ -14,7 +14,7 @@ set -gx VISUAL nvim
 
 set -gx BROWSER firefox
 
-set -gx REPOS "$HOME/repos"
+set -gx REPOS "$HOME/00_REPOS"
 set -gx GITUSER lucasherediadv
 set -gx GHREPOS "$REPOS/github.com/$GITUSER"
 

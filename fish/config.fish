@@ -107,6 +107,9 @@ if status is-interactive
     abbr --add notes "cd $NOTES"
     abbr --add n "$EDITOR $NOTES"
 
+    abbr --add cc claude
+    abbr --add ccc "claude --continue"
+
     if type -q fzf
         fzf --fish | source
     end

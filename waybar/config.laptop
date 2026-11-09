@@ -14,7 +14,7 @@
     "memory",
     /* "temperature", */
     "battery",
-    "user",
+    /* "user", */
     "clock"
   ],
   /* CPU */

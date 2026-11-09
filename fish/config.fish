@@ -43,6 +43,7 @@ if status is-interactive
     end
 
     if type -q eza
+        alias l "eza --icons --group-directories-first --classify=auto"
         alias ls "eza --icons --group-directories-first --classify=auto"
         alias la "eza --all --icons --group-directories-first --classify=auto"
         alias ll "eza --long --icons --group-directories-first --classify=auto"
@@ -108,6 +109,9 @@ if status is-interactive
 
     if type -q fzf
         fzf --fish | source
+    end
+    if type -q zoxide
+        zoxide init fish | source
     end
     if type -q starship
         starship init fish | source

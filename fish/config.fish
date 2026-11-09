@@ -114,7 +114,7 @@ if status is-interactive
         fzf --fish | source
     end
     if type -q zoxide
-        zoxide init fish | source
+        zoxide init --cmd cd fish | source
     end
     if type -q starship
         starship init fish | source

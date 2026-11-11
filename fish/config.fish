@@ -113,6 +113,8 @@ if status is-interactive
     abbr --add cc claude
     abbr --add ccc "claude --continue"
 
+    abbr --add h herdr
+
     if type -q fzf
         fzf --fish | source
     end

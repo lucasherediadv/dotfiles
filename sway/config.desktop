@@ -180,7 +180,8 @@ bindsym $mod+Shift+S exec $screenshot copy area
 # Auto launch applications
 #
 
-exec swaymsg "workspace 1; exec foot -e tmux new-session; workspace 2; exec firefox; workspace 6; exec foot -e tmux new-session btm; workspace 1"
+# Create sessions in order before launching terminals; reuse them if they already exist.
+exec (tmux has-session -t =0 2>/dev/null || tmux new-session -d -s 0) && (tmux has-session -t =1 2>/dev/null || tmux new-session -d -s 1 btm) && swaymsg "workspace 1; exec foot ~/.local/bin/herdr; workspace 2; exec foot tmux attach-session -t =0; workspace 3; exec firefox; workspace 6; exec foot tmux attach-session -t =1; workspace 2"
 
 # Gaps and Borders
 gaps inner 4

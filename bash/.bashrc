@@ -16,6 +16,10 @@ export LESSHISTFILE=/dev/null
 export EDITOR=vim
 export VISUAL=vim
 
+# Go
+export GOPATH="$HOME/.local/share/go"
+export GOBIN="$HOME/.local/bin"
+
 # Repositories
 export REPOS=$HOME/repos
 export GITUSER="lucasherediadv"

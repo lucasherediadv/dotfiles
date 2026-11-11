@@ -44,10 +44,11 @@ pathappend() {
   done
 } && export -f pathappend
 
-pathappend "$SCRIPTS"
 if [[ -n ${JAVA_HOME:-} && -d "$JAVA_HOME/bin" ]]; then
   pathappend "$JAVA_HOME/bin"
 fi
+
+pathappend "$SCRIPTS" "$HOME/.local/bin"
 
 # ----------------------------- Readline -----------------------------
 

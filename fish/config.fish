@@ -51,6 +51,9 @@ if status is-interactive
         alias la "eza --all --icons --group-directories-first --classify=auto"
         alias ll "eza --long --icons --group-directories-first --classify=auto"
         alias lla "eza --long --all --icons --group-directories-first --classify=auto"
+
+        alias tree "eza --tree --icons --group-directories-first --classify=auto"
+
     end
 
     abbr --add syu "sudo pacman -Syu --noconfirm"

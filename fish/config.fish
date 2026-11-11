@@ -14,6 +14,9 @@ set -gx VISUAL nvim
 
 set -gx BROWSER firefox
 
+set -gx GOPATH "$HOME/.local/share/go"
+set -gx GOBIN "$HOME/.local/bin"
+
 set -gx REPOS "$HOME/repos"
 set -gx GITUSER lucasherediadv
 set -gx GHREPOS "$REPOS/github.com/$GITUSER"

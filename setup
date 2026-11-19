@@ -3,6 +3,6 @@ set -eu
 
 repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 
-for tool in bash fish foot gh git nvim starship sway tmux vim waybar; do
+for tool in bash fish foot gh git hypr nvim starship sway tmux vim waybar; do
   (cd "$repo_dir/$tool" && ./setup)
 done

@@ -6,11 +6,21 @@
     min-height: 0;
 }
 
+/* The window itself is transparent; the visible bar is its inner box, so it
+   can have rounded corners and a shadow inside the 4px margin. */
 window#waybar {
-    background-color: #282828;
+    background: transparent;
     color: #a89984;
-    /* 1px border around the entire bar to match Sway window borders */
-    border: 1px solid #8d836a; 
+}
+
+window#waybar > box {
+    margin: 4px;
+    background-color: #282828;
+    /* 1px border around the entire bar to match window borders */
+    border: 1px solid #8d836a;
+    /* Keep in sync with decoration.rounding in hypr/hyprland.lua */
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(29, 32, 33, 0.8);
 }
 
 #workspaces button {
@@ -18,9 +28,13 @@ window#waybar {
     background: transparent;
     color: #a89984; /* Inactive workspace color */
     border: none;
+    /* Fade between inactive/active colors when switching workspaces */
+    transition: color 0.3s ease-in-out;
 }
 
-#workspaces button.focused {
+/* sway uses .focused, hyprland uses .active */
+#workspaces button.focused,
+#workspaces button.active {
     color: #ebdbb2; /* Active workspace color (off-white) */
 }
 

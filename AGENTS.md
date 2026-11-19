@@ -18,7 +18,7 @@ Tool `setup` scripts symlink using `$PWD` and must run from their own directory 
 
 ### Hostname-based configurations
 
-Some directories select files by `/etc/hostname` (currently `sway/` and `packages/`). Pattern: place `<name>.<hostname>` files in the tool directory; the `setup` script symlinks based on hostname.
+Some directories select files by `/etc/hostname` (currently `sway/`, `hypr/`, `waybar/` and `packages/`). Pattern: place `<name>.<hostname>` files in the tool directory; the `setup` script symlinks based on hostname.
 
 ## Key commands
 
@@ -33,7 +33,7 @@ nvim/setup       # ...same pattern
 - Shell: Fish (primary), Bash (fallback)
 - Editor: Neovim (LazyVim, gruvbox), Vim
 - Terminal: Foot / JetBrains Mono
-- WM: Sway (Wayland)
+- WM: Sway, Hyprland (Wayland)
 - Prompt: Starship
 - Theme: Gruvbox, vi mode everywhere
 

@@ -14,10 +14,6 @@ The root `setup` script orchestrates all sub-setups and handles home-directory d
 
 Tool `setup` scripts symlink using `$PWD` and must run from their own directory (`fish/setup` from inside `fish/`); running from the repo root creates dangling symlinks.
 
-### Hostname-based configurations
-
-Some directories select files by `/etc/hostname` (currently `sway/`, `hypr/` and `waybar/`). Pattern: place `<name>.<hostname>` files in the tool directory; the `setup` script symlinks based on hostname.
-
 ## Key commands
 
 ```sh

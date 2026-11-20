@@ -3,12 +3,6 @@ set -eu
 
 repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}/sway
-hostname=$(cat /etc/hostname)
 mkdir -p "$config_dir"
-if [ -f "$repo_dir/config.$hostname" ]; then
-  ln -fs "$repo_dir/config.$hostname" "$config_dir/config"
-  ln -fs "$repo_dir/wallpaper.png" "$config_dir/wallpaper.png"
-else
-  echo "Warning: no sway config for hostname '$hostname'" >&2
-  exit 1
-fi
+ln -fs "$repo_dir/config" "$config_dir/config"
+ln -fs "$repo_dir/wallpaper.png" "$config_dir/wallpaper.png"

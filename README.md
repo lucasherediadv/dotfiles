@@ -29,7 +29,9 @@ Each tool's `setup` script creates `~/.config/<tool>/` and symlinks configuratio
 | `nvim/`    | Neovim     | LazyVim + gruvbox-material                      |
 | `vim/`     | Vim        | Minimal fallback                                |
 | `tmux/`    | tmux       | Terminal multiplexer                            |
-| `sway/`    | Sway       | Wayland WM, hostname-based configs              |
+| `sway/`    | Sway       | Wayland WM                                      |
+| `hypr/`    | Hyprland   | Wayland WM, Lua config                          |
+| `waybar/`  | Waybar     | Status bar for Sway and Hyprland                |
 | `foot/`    | Foot       | Terminal emulator                               |
 | `starship/`| Starship   | Cross-shell prompt                              |
 | `git/`     | Git        | Git config                                      |

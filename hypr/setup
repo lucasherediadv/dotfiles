@@ -3,13 +3,6 @@ set -eu
 
 repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}/hypr
-hostname=$(cat /etc/hostname)
 mkdir -p "$config_dir"
-if [ -f "$repo_dir/host.$hostname" ]; then
-  ln -fs "$repo_dir/hyprland.lua" "$config_dir/hyprland.lua"
-  ln -fs "$repo_dir/host.$hostname" "$config_dir/host.lua"
-  ln -fs "$repo_dir/../sway/wallpaper.png" "$config_dir/wallpaper.png"
-else
-  echo "Warning: no hyprland config for hostname '$hostname'" >&2
-  exit 1
-fi
+ln -fs "$repo_dir/hyprland.lua" "$config_dir/hyprland.lua"
+ln -fs "$repo_dir/../sway/wallpaper.png" "$config_dir/wallpaper.png"

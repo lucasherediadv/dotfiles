@@ -1,14 +1,12 @@
 # AGENTS
 
-Personal dotfiles repo. No build system, no CI/CD, no tests. Assumes Arch Linux (`pacman`).
+Personal dotfiles repo. No build system, no CI/CD, no tests. Assumes Arch Linux.
 
 ## Structure
 
 Flat layout: one directory per tool (`fish/`, `nvim/`, `tmux/`, `sway/`, `scripts/`, etc.).
 Each tool directory has a `setup` script that creates `~/.config/<tool>/` and symlinks configurations into it.
 The root `setup` script orchestrates all sub-setups and handles home-directory dotfiles (`.bashrc`, `.bash_profile`, `.vimrc`).
-
-`packages/` holds hostname-specific `pacman` package lists, not tool configurations. Restore with `sudo pacman -S --needed - < <hostname>.txt`.
 
 **Do not edit files in `~/.config/` directly.** Edit the source file in this repo, then run `./setup` to re-link.
 
@@ -18,7 +16,7 @@ Tool `setup` scripts symlink using `$PWD` and must run from their own directory 
 
 ### Hostname-based configurations
 
-Some directories select files by `/etc/hostname` (currently `sway/`, `hypr/`, `waybar/` and `packages/`). Pattern: place `<name>.<hostname>` files in the tool directory; the `setup` script symlinks based on hostname.
+Some directories select files by `/etc/hostname` (currently `sway/`, `hypr/` and `waybar/`). Pattern: place `<name>.<hostname>` files in the tool directory; the `setup` script symlinks based on hostname.
 
 ## Key commands
 

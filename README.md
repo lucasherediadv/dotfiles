@@ -45,14 +45,6 @@ Create a new script with:
 newscript <name>
 ```
 
-## Package lists
-
-`packages/` contains hostname-specific `pacman` package lists. To restore packages on a machine:
-
-```sh
-sudo pacman -S --needed - < packages/<hostname>.txt
-```
-
 ## Git workflow
 
 [Conventional Commits](https://www.conventionalcommits.org/) with a dotfiles scope:
@@ -62,7 +54,7 @@ type(scope): subject
 
 feat(nvim): add telescope extension
 refactor(fish): clean up abbrs
-chore(packages): update helium list
+chore(waybar): tweak bar colors
 ```
 
 Branch naming: `type-scope/subject` (e.g. `refactor-nvim/cleanup-plugins`).

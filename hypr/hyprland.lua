@@ -16,12 +16,11 @@ local screenshot = "grimshot"
 local config_dir = (os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")) .. "/hypr"
 
 --
--- Look and feel: rounded corners, soft shadows, dimmed inactive windows,
--- gruvbox borders. No blur or transparency.
+-- Look and feel: rounded corners, soft shadows, gruvbox borders.
+-- No blur, transparency or dimming.
 --
 
-local border = "rgb(8d836a)"          -- focused
-local border_inactive = "rgb(504945)" -- gruvbox bg2, more muted
+local border = "rgb(8d836a)" -- same for focused and unfocused windows
 
 hl.config({
   general = {
@@ -33,7 +32,7 @@ hl.config({
     border_size = 1,
     col = {
       active_border = border,
-      inactive_border = border_inactive,
+      inactive_border = border,
     },
     layout = "dwindle",
   },
@@ -50,9 +49,6 @@ hl.config({
       color = "rgba(1d2021cc)",
     },
 
-    dim_inactive = true,
-    dim_strength = 0.1,
-
     blur = { enabled = false },
   },
 
@@ -64,9 +60,9 @@ hl.config({
   group = {
     col = {
       border_active = border,
-      border_inactive = border_inactive,
+      border_inactive = border,
       border_locked_active = border,
-      border_locked_inactive = border_inactive,
+      border_locked_inactive = border,
     },
     groupbar = {
       font_family = "JetBrains Mono",

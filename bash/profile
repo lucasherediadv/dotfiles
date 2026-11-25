@@ -1,0 +1,44 @@
+#!/bin/sh
+# shellcheck disable=SC1090,SC1091
+
+# Shared login environment (POSIX). Sourced by ~/.bash_profile before
+# starting sway, so every program in the session (and fish) inherits it.
+
+export PAGER=less
+export LESSHISTFILE=/dev/null
+export LESS="-R -i -F -X --mouse --wheel-lines=3"
+
+export MANROFFOPT=-c
+export MANPAGER="sh -c 'col -bx | bat --theme-dark=gruvbox-dark -l man -p'"
+
+export FZF_DEFAULT_OPTS="--layout=reverse"
+
+export EDITOR=nvim
+export VISUAL=nvim
+
+export BROWSER=firefox
+
+export GOBIN="$HOME/.local/bin"
+export GOPATH="$HOME/.local/share/go"
+
+export REPOS="$HOME/repos"
+export GITUSER=lucasherediadv
+export GHREPOS="$REPOS/github.com/$GITUSER"
+
+export DOTFILES="$GHREPOS/dotfiles"
+export SCRIPTS="$DOTFILES/scripts"
+export NOTES="$GHREPOS/notes"
+
+# Prepend directories to $PATH, skipping missing ones and duplicates
+for dir in "$HOME/.local/bin" "$SCRIPTS"; do
+  [ -d "$dir" ] || continue
+  case ":$PATH:" in
+  *":$dir:"*) ;;
+  *) PATH="$dir${PATH:+":$PATH"}" ;;
+  esac
+done
+unset dir
+export PATH
+
+# Machine-local environment (secrets, work variables) shared by all shells
+[ -f "$HOME/.profile_local" ] && . "$HOME/.profile_local"

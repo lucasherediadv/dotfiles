@@ -26,7 +26,8 @@ nvim/setup       # ...same pattern
 
 ## Environment
 
-- Shell: Fish (primary), Bash (fallback)
+- Shell: Bash is the login shell (TTY1 starts Sway), Fish is the interactive shell (foot, tmux, herdr)
+- Environment: exported variables and `$PATH` live only in `bash/profile` (POSIX, linked to `~/.profile`), loaded by `bash_profile` before Sway so the whole session inherits them. `config.fish` only imports it as a fallback; keep shell-specific config (aliases, abbrs, `CDPATH`) in each shell
 - Editor: Neovim (LazyVim, gruvbox), Vim
 - Terminal: Foot / JetBrains Mono
 - WM: Sway (Wayland)

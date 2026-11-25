@@ -1,6 +1,5 @@
-function zo
-    set -l command_output ($SCRIPTS/0-cd)
-    if test (count $command_output) -gt 0
-        eval $command_output
-    end
+function zo --description 'Pick a subdirectory with fzf and cd into it'
+    set -l dir (find . -type d -not -path '*/.*' | fzf --height 40% --border --prompt 'Select a directory: ')
+    or return
+    cd -- $dir
 end

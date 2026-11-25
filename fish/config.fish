@@ -1,33 +1,18 @@
 set -g fish_greeting
 
-set -gx PAGER less
-set -gx LESSHISTFILE /dev/null
-set -gx LESS "-R -i -F -X --mouse --wheel-lines=3"
+# The environment comes from ~/.profile (bash login shell). If fish was
+# started without it, import the variables that file exports.
+if not set -q DOTFILES; and test -f $HOME/.profile
+    for line in (sh -c '. "$HOME/.profile" >/dev/null 2>&1; env')
+        set -l kv (string split --max 1 = -- $line)
+        string match -qr '^(PWD|SHLVL|_)$' -- $kv[1]; and continue
+        test (count $kv) -eq 2; or continue
+        test "$$kv[1]" = "$kv[2]"; or set -gx $kv[1] $kv[2]
+    end
+end
 
-set -gx MANROFFOPT -c
-set -gx MANPAGER "sh -c 'col -bx | bat --theme-dark=gruvbox-dark -l man -p'"
-
-set -gx FZF_DEFAULT_OPTS --reverse
-
-set -gx EDITOR nvim
-set -gx VISUAL nvim
-
-set -gx BROWSER firefox
-
-set -gx GOPATH "$HOME/.local/share/go"
-set -gx GOBIN "$HOME/.local/bin"
-
-set -gx REPOS "$HOME/repos"
-set -gx GITUSER lucasherediadv
-set -gx GHREPOS "$REPOS/github.com/$GITUSER"
-
-set -gx DOTFILES "$GHREPOS/dotfiles"
-set -gx SCRIPTS "$DOTFILES/scripts"
-set -gx NOTES "$GHREPOS/notes"
-
-set -gx CDPATH ".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
-
-fish_add_path --path "$SCRIPTS" "$HOME/.local/bin"
+# Not exported, so child scripts calling `cd` are not affected
+set -gu CDPATH . $HOME $REPOS/github.com $GHREPOS $DOTFILES
 
 if status is-interactive
     fish_vi_key_bindings

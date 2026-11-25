@@ -26,7 +26,7 @@ Dotfiles are stored without the leading dot (e.g. `bash/bashrc`) so they are not
 
 | Directory  | Tool       | Notes                                          |
 | ---------- | ---------- | ---------------------------------------------- |
-| `bash/`    | Bash       | Fallback shell, `bashrc` and `bash_profile`    |
+| `bash/`    | Bash       | Login/fallback shell, shared env in `profile`  |
 | `fish/`    | Fish       | Primary shell, vi mode, starship prompt         |
 | `nvim/`    | Neovim     | LazyVim + gruvbox-material                      |
 | `vim/`     | Vim        | Minimal fallback                                |

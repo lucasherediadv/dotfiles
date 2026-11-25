@@ -41,7 +41,9 @@ Lean starter: `init.lua`, `lua/config/lazy.lua`, `lua/plugins/gruvbox-material.l
 
 ## Git workflow
 
-Conventional Commits with dotfiles scope: `type(scope): subject` (e.g. `feat(nvim):`, `refactor(fish):`). Subject lowercase, imperative mood. Prefer `chore:`/`docs:` over `feat:` for housekeeping.
+Conventional Commits with dotfiles scope: `type(scope): subject` (e.g. `feat(nvim):`, `refactor(fish):`). Subject lowercase, imperative mood. Prefer `chore`/`docs` over `feat` for housekeeping.
+
+Commits are a single line: type, scope and subject are all required. No body, and no `Co-Authored-By` or any other AI agent attribution.
 
 Branch naming: `type-scope/subject` (e.g. `refactor-nvim/cleanup-plugins`).
 

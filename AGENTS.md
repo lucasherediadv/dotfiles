@@ -27,7 +27,7 @@ nvim/setup       # ...same pattern
 - Shell: Fish (primary), Bash (fallback)
 - Editor: Neovim (LazyVim, gruvbox), Vim
 - Terminal: Foot / JetBrains Mono
-- WM: Sway, Hyprland (Wayland)
+- WM: Sway (Wayland)
 - Prompt: Starship
 - Theme: Gruvbox, vi mode everywhere
 

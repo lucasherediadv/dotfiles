@@ -30,8 +30,7 @@ Each tool's `setup` script creates `~/.config/<tool>/` and symlinks configuratio
 | `vim/`     | Vim        | Minimal fallback                                |
 | `tmux/`    | tmux       | Terminal multiplexer                            |
 | `sway/`    | Sway       | Wayland WM                                      |
-| `hypr/`    | Hyprland   | Wayland WM, Lua config                          |
-| `waybar/`  | Waybar     | Status bar for Sway and Hyprland                |
+| `waybar/`  | Waybar     | Status bar for Sway                             |
 | `foot/`    | Foot       | Terminal emulator                               |
 | `starship/`| Starship   | Cross-shell prompt                              |
 | `git/`     | Git        | Git config                                      |

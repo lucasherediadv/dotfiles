@@ -18,7 +18,6 @@ window#waybar > box {
     background-color: #282828;
     /* 1px border around the entire bar to match window borders */
     border: 1px solid #8d836a;
-    /* Keep in sync with decoration.rounding in hypr/hyprland.lua */
     border-radius: 6px;
     box-shadow: 0 0 4px rgba(29, 32, 33, 0.8);
 }
@@ -32,9 +31,7 @@ window#waybar > box {
     transition: color 0.3s ease-in-out;
 }
 
-/* sway uses .focused, hyprland uses .active */
-#workspaces button.focused,
-#workspaces button.active {
+#workspaces button.focused {
     color: #ebdbb2; /* Active workspace color (off-white) */
 }
 

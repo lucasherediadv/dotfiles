@@ -9,7 +9,6 @@
   "margin-bottom": 0,
   "modules-left": [
     "sway/workspaces",
-    "hyprland/workspaces",
   ],
   "modules-right": [
     "cpu",

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Launches the Sway session programs on their workspaces, creating the
+# tmux sessions first (or reusing them if they already exist).
+
+tmux has-session -t =0 2>/dev/null || tmux new-session -d -s 0
+tmux has-session -t =1 2>/dev/null || tmux new-session -d -s 1 btm
+
+swaymsg "workspace 1; exec foot tmux attach-session -t =0; \
+         workspace 2; exec firefox; \
+         workspace 6; exec foot tmux attach-session -t =1; \
+         workspace 1"

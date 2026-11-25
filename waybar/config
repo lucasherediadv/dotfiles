@@ -1,12 +1,11 @@
 {
   "layer": "top",
   "position": "bottom",
-  /* Bar + 1px border + 4px margin on each side (drawn in style.css, leaves room for the shadow) */
-  "height": 40,
+  "height": 30,
   "margin-top": 0,
-  "margin-left": 0,
-  "margin-right": 0,
-  "margin-bottom": 0,
+  "margin-left": 4,
+  "margin-right": 4,
+  "margin-bottom": 4,
   "modules-left": [
     "sway/workspaces",
   ],

@@ -2,5 +2,5 @@
 set -eu
 
 repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
-ln -sf "$repo_dir/.bashrc" "$HOME/.bashrc"
-ln -sf "$repo_dir/.bash_profile" "$HOME/.bash_profile"
+ln -sf "$repo_dir/bashrc" "$HOME/.bashrc"
+ln -sf "$repo_dir/bash_profile" "$HOME/.bash_profile"

@@ -20,11 +20,13 @@ sway/setup
 
 Each tool's `setup` script creates `~/.config/<tool>/` and symlinks configuration files into it. **Edit files in this repo, not in `~/.config/` directly.**
 
+Dotfiles are stored without the leading dot (e.g. `bash/bashrc`) so they are not hidden; `setup` links them with the dot (`~/.bashrc`).
+
 ## Tools
 
 | Directory  | Tool       | Notes                                          |
 | ---------- | ---------- | ---------------------------------------------- |
-| `bash/`    | Bash       | Fallback shell, `.bashrc` and `.bash_profile`  |
+| `bash/`    | Bash       | Fallback shell, `bashrc` and `bash_profile`    |
 | `fish/`    | Fish       | Primary shell, vi mode, starship prompt         |
 | `nvim/`    | Neovim     | LazyVim + gruvbox-material                      |
 | `vim/`     | Vim        | Minimal fallback                                |

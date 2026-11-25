@@ -6,7 +6,9 @@ Personal dotfiles repo. No build system, no CI/CD, no tests. Assumes Arch Linux.
 
 Flat layout: one directory per tool (`fish/`, `nvim/`, `tmux/`, `sway/`, `scripts/`, etc.).
 Each tool directory has a `setup` script that creates `~/.config/<tool>/` and symlinks configurations into it.
-The root `setup` script orchestrates all sub-setups and handles home-directory dotfiles (`.bashrc`, `.bash_profile`, `.vimrc`).
+The root `setup` script orchestrates all sub-setups.
+
+Dotfiles are stored without the leading dot so they are visible by default (`bash/bashrc`, `bash/bash_profile`, `vim/vimrc`); the `setup` scripts add the dot when linking (`~/.bashrc`, `~/.bash_profile`, `~/.vimrc`).
 
 **Do not edit files in `~/.config/` directly.** Edit the source file in this repo, then run `./setup` to re-link.
 

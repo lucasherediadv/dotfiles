@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC1091
+# shellcheck disable=SC1090,SC1091
 
 case $- in
 *i*) ;; # Interactive
@@ -8,37 +8,28 @@ esac
 
 # ----------------------- Environment variables ----------------------
 
-# Pager
 export PAGER=less
 export LESSHISTFILE=/dev/null
 
-# Editor
 export EDITOR=vim
 export VISUAL=vim
 
-# Go
 export GOPATH="$HOME/.local/share/go"
 export GOBIN="$HOME/.local/bin"
 
-# Repositories
-export REPOS=$HOME/repos
-export GITUSER="lucasherediadv"
+export REPOS="$HOME/repos"
+export GITUSER=lucasherediadv
 export GHREPOS="$REPOS/github.com/$GITUSER"
 
-# Dotfiles
 export DOTFILES="$GHREPOS/dotfiles"
-
-# Scripts
-export SCRIPTS="$DOTFILES/scripts/"
-
-# ------------------------------ $CDPATH -----------------------------
+export SCRIPTS="$DOTFILES/scripts"
 
 export CDPATH=".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
 
 # ------------------------------- $PATH ------------------------------
 
 pathappend() {
-  declare arg
+  local arg
   for arg in "$@"; do
     test -d "$arg" || continue
     PATH=${PATH//":$arg:"/:}
@@ -46,11 +37,7 @@ pathappend() {
     PATH=${PATH/%":$arg"/}
     export PATH="${PATH:+"$PATH:"}$arg"
   done
-} && export -f pathappend
-
-if [[ -n ${JAVA_HOME:-} && -d "$JAVA_HOME/bin" ]]; then
-  pathappend "$JAVA_HOME/bin"
-fi
+}
 
 pathappend "$SCRIPTS" "$HOME/.local/bin"
 
@@ -60,13 +47,12 @@ set -o vi
 bind 'set show-all-if-ambiguous on'
 bind 'set completion-ignore-case on'
 
-# ------------------------ Bash shell options ------------------------
+# --------------------------- Shell options --------------------------
 
 shopt -s dotglob
 shopt -s extglob
 shopt -s globstar
 shopt -s checkwinsize
-shopt -s expand_aliases
 
 # ------------------------------ History -----------------------------
 
@@ -80,23 +66,23 @@ export HISTCONTROL=ignoreboth
 unalias -a
 alias vi='$EDITOR'
 alias clear='clear -x'
-alias ls='eza --icons --group-directories-first --classify=auto'
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza --icons --group-directories-first --classify=auto'
+fi
 
-# -------------------- Personalized configuration --------------------
+# ------------------------ Local configuration -----------------------
 
-[ -f "$HOME/.bash_personal" ] && . "$HOME/.bash_personal"
-[ -f "$HOME/.bash_private" ] && . "$HOME/.bash_private"
-[ -f "$HOME/.bash_work" ] && . "$HOME/.bash_work"
+for local_config in ~/.bash_personal ~/.bash_private ~/.bash_work; do
+  [[ -f $local_config ]] && . "$local_config"
+done
+unset local_config
 
-# ------------- Source external dependencies / completion ------------
+# ---------------------- Completion and prompt -----------------------
 
-# Use bash-completion, if available, and avoid double-sourcing
-[[ $PS1 &&
-  ! ${BASH_COMPLETION_VERSINFO:-} &&
-  -f /usr/share/bash-completion/bash_completion ]] &&
+if [[ -z ${BASH_COMPLETION_VERSINFO:-} && -f /usr/share/bash-completion/bash_completion ]]; then
   . /usr/share/bash-completion/bash_completion
+fi
 
-# Starship prompt initialization
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init bash)"
 fi

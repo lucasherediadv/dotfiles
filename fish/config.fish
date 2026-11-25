@@ -27,8 +27,14 @@ set -gx NOTES "$GHREPOS/notes"
 
 set -gx CDPATH ".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
 
+fish_add_path --path "$SCRIPTS" "$HOME/.local/bin"
+
 if status is-interactive
     fish_vi_key_bindings
+
+    ### Aliases ###
+
+    alias todo "$EDITOR $HOME/TODO.md"
 
     if type -q asciiquarium
         alias fishies asciiquarium
@@ -36,88 +42,80 @@ if status is-interactive
     if type -q pstree
         alias pstree "pstree -UC age"
     end
-    if type -q tree
-        alias tree "tree --dirsfirst -a -C -I .git"
-        alias lt "tree --dirsfirst -a -C -I .git -L 1"
-    end
-    alias todo "$EDITOR $HOME/TODO.md"
     if type -q bat
         alias cat "bat --theme-dark=gruvbox-dark"
     end
-
+    if type -q tree
+        alias lt "tree --dirsfirst -a -C -I .git -L 1"
+    end
     if type -q eza
-        alias l "eza --icons --group-directories-first --classify=auto"
-        alias ls "eza --icons --group-directories-first --classify=auto"
-        alias la "eza --all --icons --group-directories-first --classify=auto"
-        alias ll "eza --long --icons --group-directories-first --classify=auto"
-        alias lla "eza --long --all --icons --group-directories-first --classify=auto"
-
-        alias tree "eza --tree --icons --group-directories-first --classify=auto"
-
+        set -l eza eza --icons --group-directories-first --classify=auto
+        alias l "$eza"
+        alias ls "$eza"
+        alias la "$eza --all"
+        alias ll "$eza --long"
+        alias lla "$eza --long --all"
+        alias tree "$eza --tree"
+    else if type -q tree
+        alias tree "tree --dirsfirst -a -C -I .git"
     end
 
-    abbr --add syu "sudo pacman -Syu --noconfirm"
-
-    abbr --add 0 "cd $HOME/0"
+    ### Abbreviations ###
 
     abbr --add reload "exec fish --login"
-
+    abbr --add syu "sudo pacman -Syu --noconfirm"
     abbr --add e exit
     abbr --add t tmux
-
+    abbr --add h herdr
     abbr --add c "clear -x"
     abbr --add clear "clear -x"
-
     abbr --add v "$EDITOR"
     abbr --add vi "$EDITOR"
+    abbr --add cc claude
+    abbr --add ccc "claude --continue"
+    if type -q pass
+        abbr --add pc "pass show --clip"
+    end
 
-    abbr -a .. "cd ./../"
-    abbr -a ... "cd ./../../"
-    abbr -a .... "cd ./../../../"
-
+    # Coreutils
     abbr --add cp "cp --verbose"
     abbr --add ln "ln --verbose"
     abbr --add mv "mv --verbose"
     abbr --add rm "rm --verbose"
     abbr --add rmdir "rmdir --verbose"
-
     abbr --add ip "ip --color=auto"
     abbr --add diff "diff --color=auto"
     abbr --add grep "grep --color=auto"
-
     abbr --add free "free --mega --human"
     abbr --add df "df --human-readable"
     abbr --add du "du --human-readable"
 
-    if type -q pass
-        abbr --add pc "pass show --clip"
-    end
+    # Navigation
+    abbr --add .. "cd ./../"
+    abbr --add ... "cd ./../../"
+    abbr --add .... "cd ./../../../"
+    abbr --add 0 "cd $HOME/0"
+    abbr --add repos "cd $REPOS"
+    abbr --add ghrepos "cd $REPOS/github.com/"
+    abbr --add myrepos "cd $GHREPOS"
+    abbr --add scripts "cd $SCRIPTS"
+    abbr --add dotfiles "cd $DOTFILES"
+    abbr --add notes "cd $NOTES"
+    abbr --add n "$EDITOR $NOTES"
 
+    # Git
     abbr --add g git
-    if type -q lazygit
-        abbr --add lg lazygit
-    end
     abbr --add gp "git pull"
     abbr --add gd "git diff"
     abbr --add gps "git push"
     abbr --add gs "git status"
     abbr --add gaa "git add --all"
     abbr --add gds "git diff --staged"
+    if type -q lazygit
+        abbr --add lg lazygit
+    end
 
-    abbr --add repos "cd $REPOS"
-    abbr --add ghrepos "cd $REPOS/github.com/"
-    abbr --add myrepos "cd $GHREPOS"
-    abbr --add scripts "cd $SCRIPTS"
-    abbr --add dotfiles "cd $DOTFILES"
-
-    abbr --add notes "cd $NOTES"
-    abbr --add n "$EDITOR $NOTES"
-
-    abbr --add cc claude
-    abbr --add ccc "claude --continue"
-
-    abbr --add h herdr
-
+    # Integrations
     if type -q fzf
         fzf --fish | source
     end
@@ -128,8 +126,6 @@ if status is-interactive
         starship init fish | source
     end
 end
-
-fish_add_path --path "$SCRIPTS" "$HOME/.local/bin"
 
 for local_config in $HOME/.fish_personal.fish $HOME/.fish_private.fish $HOME/.fish_work.fish
     test -f $local_config; and source $local_config

@@ -6,7 +6,7 @@
 
 export PAGER=less
 export LESSHISTFILE=/dev/null
-export LESS="-R -i -F -X --mouse --wheel-lines=3"
+export LESS="-R -i -F -X"
 
 # Prefer nvim, then vim, falling back to vi (always present)
 for editor in nvim vim vi; do
@@ -17,7 +17,10 @@ VISUAL=$editor
 unset editor
 export EDITOR VISUAL
 
-export BROWSER=firefox
+# Only set a browser that is installed, so tools fall back to their default
+if command -v firefox >/dev/null 2>&1; then
+  export BROWSER=firefox
+fi
 
 export GOBIN="$HOME/.local/bin"
 export GOPATH="$HOME/.local/share/go"

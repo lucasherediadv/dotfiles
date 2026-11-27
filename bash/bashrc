@@ -70,7 +70,7 @@ if [ -z "${BASH_COMPLETION_VERSINFO:-}" ] && [ -f /usr/share/bash-completion/bas
   . /usr/share/bash-completion/bash_completion
 fi
 
-# Two-line prompt like Starship: a blank line, user@host:dir(branch),
+# Two-line prompt: a blank line, user@host:dir(branch),
 # then $ on its own line. Colors are ANSI, so they follow the terminal theme
 __ps1() {
   local P='$' dir=${PWD##*/} B \

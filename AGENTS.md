@@ -4,7 +4,7 @@ Personal dotfiles repo. No build system, no CI/CD, no tests. Assumes Arch Linux.
 
 ## Structure
 
-Flat layout: one directory per tool (`fish/`, `nvim/`, `tmux/`, `sway/`, `scripts/`, etc.).
+Flat layout: one directory per tool (`bash/`, `nvim/`, `tmux/`, `sway/`, `scripts/`, etc.).
 Each tool directory has a `setup` script that creates `~/.config/<tool>/` and symlinks configurations into it.
 The root `setup` script orchestrates all sub-setups.
 
@@ -14,24 +14,25 @@ Dotfiles are stored without the leading dot so they are visible by default (`bas
 
 ### Setup
 
-Tool `setup` scripts symlink using `$PWD` and must run from their own directory (`fish/setup` from inside `fish/`); running from the repo root creates dangling symlinks.
+Tool `setup` scripts resolve their own directory from `$0`, so they can be run from anywhere (`./setup`, `bash/setup`, `cd bash && ./setup`).
 
 ## Key commands
 
 ```sh
 ./setup          # symlink all configurations (must run from repo root)
-fish/setup       # individual tool setup (run from repo root)
+bash/setup       # individual tool setup
 nvim/setup       # ...same pattern
 ```
 
 ## Environment
 
-- Shell: Bash is the login shell (TTY1 starts Sway), Fish is the interactive shell (foot, tmux, herdr)
-- Environment: exported variables and `$PATH` live only in `bash/profile` (POSIX, linked to `~/.profile`), loaded by `bash_profile` before Sway so the whole session inherits them. `config.fish` only imports it as a fallback; keep shell-specific config (aliases, abbrs, `CDPATH`) in each shell
+- Shell: Bash, both login (TTY1 starts Sway) and interactive. Keep it close to POSIX sh: no `shopt` glob extensions, short portable options in aliases
+- Environment: exported variables and `$PATH` live only in `bash/profile` (POSIX, linked to `~/.profile`), loaded by `bash_profile` before Sway so the whole session inherits them. Interactive-only config (aliases, functions, history, `CDPATH`) lives in `bash/bashrc`
+- Line editing: `readline/inputrc` (linked to `~/.inputrc`) holds vi mode and completion settings for every readline program; do not use `bind` in `bashrc`
 - Editor: Neovim (LazyVim, gruvbox), Vim
 - Terminal: Foot / JetBrains Mono
 - WM: Sway (Wayland)
-- Prompt: Starship
+- Prompt: `__ps1` in `bash/bashrc` (two lines: user@host:dir(branch), then $)
 - Theme: Gruvbox, vi mode everywhere
 
 ## Scripts
@@ -40,14 +41,14 @@ Utility scripts in `scripts/` (no `.sh` extension). Scaffold with `scripts/newsc
 
 ## LazyVim
 
-Lean starter: `init.lua`, `lua/config/lazy.lua`, `lua/plugins/gruvbox-material.lua`. Extra plugins in `nvim/lua/plugins/`. `lazy-lock.json` and `lazyvim.json` are ignored.
+Lean starter: `init.lua`, `lua/config/lazy.lua`, `lua/config/options.lua`, `lua/plugins/gruvbox.lua`. Extra plugins in `nvim/lua/plugins/`. `lazy-lock.json` and `lazyvim.json` are ignored.
 
 ## Git workflow
 
-Conventional Commits with dotfiles scope: `type(scope): subject` (e.g. `feat(nvim):`, `refactor(fish):`). Subject lowercase, imperative mood. Prefer `chore`/`docs` over `feat` for housekeeping.
+Conventional Commits with dotfiles scope: `type(scope): subject` (e.g. `feat(nvim):`, `refactor(bash):`). Subject lowercase, imperative mood. Prefer `chore`/`docs` over `feat` for housekeeping.
 
 Commits are a single line: type, scope and subject are all required. No body, and no `Co-Authored-By` or any other AI agent attribution.
 
-Branch naming: `type-scope/subject` (e.g. `refactor-nvim/cleanup-plugins`).
+Commit directly to `main`; no feature branches.
 
 Default branch: `main`. Uses `gh` CLI.

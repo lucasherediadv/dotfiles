@@ -14,7 +14,7 @@ Individual tools can be set up separately:
 
 ```sh
 nvim/setup
-fish/setup
+bash/setup
 sway/setup
 ```
 
@@ -26,15 +26,14 @@ Dotfiles are stored without the leading dot (e.g. `bash/bashrc`) so they are not
 
 | Directory  | Tool       | Notes                                          |
 | ---------- | ---------- | ---------------------------------------------- |
-| `bash/`    | Bash       | Login/fallback shell, shared env in `profile`  |
-| `fish/`    | Fish       | Primary shell, vi mode, starship prompt         |
-| `nvim/`    | Neovim     | LazyVim + gruvbox-material                      |
+| `bash/`    | Bash       | Login and interactive shell, env in `profile`  |
+| `readline/`| Readline   | `~/.inputrc`: vi mode and completion           |
+| `nvim/`    | Neovim     | LazyVim + gruvbox                               |
 | `vim/`     | Vim        | Minimal fallback                                |
 | `tmux/`    | tmux       | Terminal multiplexer                            |
 | `sway/`    | Sway       | Wayland WM                                      |
 | `waybar/`  | Waybar     | Status bar for Sway                             |
 | `foot/`    | Foot       | Terminal emulator                               |
-| `starship/`| Starship   | Cross-shell prompt                              |
 | `git/`     | Git        | Git config                                      |
 | `gh/`      | GitHub CLI | gh config                                       |
 
@@ -56,8 +55,8 @@ newscript <name>
 type(scope): subject
 
 feat(nvim): add telescope extension
-refactor(fish): clean up abbrs
+refactor(bash): clean up aliases
 chore(waybar): tweak bar colors
 ```
 
-Branch naming: `type-scope/subject` (e.g. `refactor-nvim/cleanup-plugins`).
+Commit directly to `main`; no feature branches.

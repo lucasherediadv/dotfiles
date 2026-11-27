@@ -28,7 +28,7 @@ nvim/setup       # ...same pattern
 
 - Shell: Bash, both login (TTY1 starts Sway) and interactive. Keep it close to POSIX sh: no `shopt` glob extensions, short portable options in aliases
 - Environment: exported variables and `$PATH` live only in `bash/profile` (POSIX, linked to `~/.profile`), loaded by `bash_profile` before Sway so the whole session inherits them. Interactive-only config (aliases, functions, history, `CDPATH`) lives in `bash/bashrc`
-- Line editing: `readline/inputrc` (linked to `~/.inputrc`) holds vi mode and completion settings for every readline program; do not use `bind` in `bashrc`
+- Line editing: `readline/inputrc` (linked to `~/.inputrc`) holds vi mode for every readline program, otherwise kept at the defaults; do not use `bind` in `bashrc`
 - Editor: Neovim (LazyVim, gruvbox), Vim. `vimrc` must load on minimal builds (e.g. vim-tiny): guard features with `has()`/`exists()`
 - Tool configs must not duplicate `bash/profile`: `gh` takes editor, browser and pager from `$EDITOR`, `$BROWSER` and `$PAGER`
 - Git: `gh` credential helper lives in `git/credential-gh`, linked by `git/setup` only when `gh` is installed

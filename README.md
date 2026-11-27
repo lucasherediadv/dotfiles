@@ -27,7 +27,7 @@ Dotfiles are stored without the leading dot (e.g. `bash/bashrc`) so they are not
 | Directory  | Tool       | Notes                                          |
 | ---------- | ---------- | ---------------------------------------------- |
 | `bash/`    | Bash       | Login and interactive shell, env in `profile`  |
-| `readline/`| Readline   | `~/.inputrc`: vi mode and completion           |
+| `readline/`| Readline   | `~/.inputrc`: vi mode, defaults otherwise      |
 | `nvim/`    | Neovim     | LazyVim + gruvbox                               |
 | `vim/`     | Vim        | Minimal fallback                                |
 | `tmux/`    | tmux       | Terminal multiplexer                            |

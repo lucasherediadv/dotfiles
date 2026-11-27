@@ -31,7 +31,7 @@ HISTTIMEFORMAT='%F %T  '
 # ------------------------------ Aliases -----------------------------
 
 unalias -a
-alias vi='$EDITOR'
+command -v vim >/dev/null 2>&1 && alias vi=vim
 alias ls='ls -h --color=auto'
 
 # ----------------------------- Functions ----------------------------

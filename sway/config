@@ -25,26 +25,7 @@ set $screenshot grimshot
 output * bg ~/.config/sway/wallpaper.png fill
 
 # Outputs
-output DP-1 mode 1440x900@60Hz position 1920,0
-output HDMI-A-3 mode 1920x1080@60Hz position 0,0
-
-#
-# Workspace assignments to outputs
-#
-
-# DP-1
-workspace 6 output DP-1
-workspace 7 output DP-1
-workspace 8 output DP-1
-workspace 9 output DP-1
-workspace 10 output DP-1
-
-# HDMI-A-3
-workspace 1 output HDMI-A-3
-workspace 2 output HDMI-A-3
-workspace 3 output HDMI-A-3
-workspace 4 output HDMI-A-3
-workspace 5 output HDMI-A-3
+output HDMI-A-3 mode 1920x1080@60Hz
 
 #
 # Key bindings

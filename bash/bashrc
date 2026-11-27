@@ -70,6 +70,23 @@ if [ -z "${BASH_COMPLETION_VERSINFO:-}" ] && [ -f /usr/share/bash-completion/bas
   . /usr/share/bash-completion/bash_completion
 fi
 
-if command -v starship >/dev/null 2>&1; then
-  eval "$(starship init bash)"
-fi
+# Two-line prompt like Starship: a blank line, user@host:dir(branch),
+# then $ on its own line. Colors are ANSI, so they follow the terminal theme
+__ps1() {
+  local P='$' dir=${PWD##*/} B \
+    r='\[\e[31m\]' u='\[\e[33m\]' h='\[\e[34m\]' w='\[\e[35m\]' \
+    b='\[\e[36m\]' p='\[\e[34m\]' g='\[\e[90m\]' x='\[\e[0m\]'
+
+  [ "$EUID" -eq 0 ] && P='#' && u=$r && p=$r
+  [ "$PWD" = / ] && dir=/
+  [ "$PWD" = "$HOME" ] && dir='~'
+
+  B=$(git branch --show-current 2>/dev/null)
+  [ -n "$B" ] && [ "$dir" = "$B" ] && B=.
+  case $B in master | main) b=$r ;; esac
+  [ -n "$B" ] && B="$g($b$B$g)"
+
+  PS1="\n$u\\u$g@$h\\h$g:$w$dir$B\n$p$P$x "
+}
+
+PROMPT_COMMAND="${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}__ps1"

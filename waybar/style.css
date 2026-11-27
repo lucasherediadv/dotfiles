@@ -1,3 +1,11 @@
+/* Gruvbox dark, border matches the Sway window borders */
+@define-color bg     #282828;
+@define-color fg     #a89984;
+@define-color fg0    #ebdbb2;
+@define-color yellow #fabd2f;
+@define-color red    #fb4934;
+@define-color border #8d836a;
+
 * {
     border: none;
     border-radius: 0;
@@ -7,68 +15,41 @@
 }
 
 window#waybar {
-    background-color: #282828;
-    color: #a89984;
-    /* 1px border around the entire bar to match Sway window borders */
-    border: 1px solid #8d836a;
+    background-color: @bg;
+    color: @fg;
+    border: 1px solid @border;
+}
+
+#workspaces button,
+#cpu,
+#memory,
+#clock {
+    padding: 0 6px;
 }
 
 #workspaces button {
-    padding: 0 6px;
     background: transparent;
-    color: #a89984; /* Inactive workspace color */
-    border: none;
+    color: @fg;
 }
 
-#workspaces button.focused {
-    color: #ebdbb2; /* Active workspace color (off-white) */
-}
-
-#workspaces button.urgent {
-    color: #fb4934; /* Urgent workspace color */
-}
-
+/* Undo the GTK hover highlight */
 #workspaces button:hover {
     background: transparent;
     box-shadow: inherit;
     text-shadow: inherit;
 }
 
-#cpu,
-#memory,
-#temperature,
-#battery,
-#user {
-  padding: 6px;
+#workspaces button.focused {
+    color: @fg0;
 }
 
-/* Matches the gruvbox accents already used for urgent workspaces */
-#cpu.warning,
-#memory.warning {
-  color: #fabd2f; /* Elevated usage (yellow) */
-}
-
+#workspaces button.urgent,
 #cpu.critical,
 #memory.critical {
-  color: #fb4934; /* Critical usage (red) */
+    color: @red;
 }
 
-#temperature.warning {
-  color: #fabd2f; /* Getting warm (yellow) */
-}
-
-#temperature.critical {
-  color: #fb4934; /* Too hot (red) */
-}
-
-#battery.warning {
-  color: #fabd2f; /* Battery getting low (yellow) */
-}
-
-#battery.critical {
-  color: #fb4934; /* Battery nearly empty (red) */
-}
-
-#clock {
-  padding: 6px;
+#cpu.warning,
+#memory.warning {
+    color: @yellow;
 }

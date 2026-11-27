@@ -32,7 +32,6 @@ HISTTIMEFORMAT='%F %T  '
 
 unalias -a
 alias vi='$EDITOR'
-alias clear='clear -x'
 alias ls='ls -h --color=auto'
 
 # ----------------------------- Functions ----------------------------

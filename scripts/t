@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ -n "$TMUX" ]; then
   echo "Already inside a tmux session"

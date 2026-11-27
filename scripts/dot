@@ -1,5 +1,5 @@
-#!/bin/bash
-set -euo pipefail
+#!/bin/sh
+set -eu
 
 editor=${EDITOR:-vi}
 command -v "$editor" >/dev/null 2>&1 || {

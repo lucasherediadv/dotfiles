@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # creates a new script in my scripts collection
 
@@ -34,4 +34,4 @@ fi
 
 touch "$target_path"
 chmod +x "$target_path"
-echo "#!/bin/bash" >"$target_path"
+echo "#!/bin/sh" >"$target_path"

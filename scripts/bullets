@@ -1,2 +1,2 @@
-#!/usr/bin/perl -pa
-$_ = join " • ", @F
+#!/bin/sh
+exec awk -v OFS=' • ' '{ $1 = $1 } 1' "$@"

@@ -19,7 +19,7 @@ Tool `setup` scripts resolve their own directory from `$0`, so they can be run f
 ## Key commands
 
 ```sh
-./setup          # symlink all configurations (must run from repo root)
+./setup          # symlink all configurations (runs from anywhere)
 bash/setup       # individual tool setup
 nvim/setup       # ...same pattern
 ```
@@ -29,7 +29,9 @@ nvim/setup       # ...same pattern
 - Shell: Bash, both login (TTY1 starts Sway) and interactive. Keep it close to POSIX sh: no `shopt` glob extensions, short portable options in aliases
 - Environment: exported variables and `$PATH` live only in `bash/profile` (POSIX, linked to `~/.profile`), loaded by `bash_profile` before Sway so the whole session inherits them. Interactive-only config (aliases, functions, history, `CDPATH`) lives in `bash/bashrc`
 - Line editing: `readline/inputrc` (linked to `~/.inputrc`) holds vi mode and completion settings for every readline program; do not use `bind` in `bashrc`
-- Editor: Neovim (LazyVim, gruvbox), Vim
+- Editor: Neovim (LazyVim, gruvbox), Vim. `vimrc` must load on minimal builds (e.g. vim-tiny): guard features with `has()`/`exists()`
+- Tool configs must not duplicate `bash/profile`: `gh` takes editor, browser and pager from `$EDITOR`, `$BROWSER` and `$PAGER`
+- Git: `gh` credential helper lives in `git/credential-gh`, linked by `git/setup` only when `gh` is installed
 - Terminal: Foot / JetBrains Mono
 - WM: Sway (Wayland)
 - Prompt: `__ps1` in `bash/bashrc` (two lines: user@host:dir(branch), then $)
@@ -38,6 +40,8 @@ nvim/setup       # ...same pattern
 ## Scripts
 
 Utility scripts in `scripts/` (no `.sh` extension). Scaffold with `scripts/newscript <name>`.
+
+Prefer `#!/bin/sh` with POSIX commands and short options; use `#!/usr/bin/env bash` only when bash features are needed. Never hardcode interpreter paths (`/bin/bash`, `/usr/bin/perl`).
 
 ## LazyVim
 

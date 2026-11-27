@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "$PATH" | sed 's/:/\n/g'
+printf '%s\n' "$PATH" | tr : '\n'

@@ -7,7 +7,7 @@ length="${1:-64}"
 raw_pass() {
   # Use tr to delete all characters *not* in the set ' -~' (ASCII printable characters)
   # The set ' -~' covers ASCII codes 32 (space) through 126 (tilde)
-  tr -dc "$1" </dev/urandom |
+  LC_ALL=C tr -dc "$1" </dev/urandom |
     dd ibs=1 obs=1 count="${length}" 2>/dev/null
 }
 

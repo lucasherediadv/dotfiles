@@ -2,19 +2,20 @@
 # shellcheck disable=SC1090,SC1091
 
 # Shared login environment (POSIX). Sourced by ~/.bash_profile before
-# starting sway, so every program in the session (and fish) inherits it.
+# starting sway, so every program in the session inherits it.
 
 export PAGER=less
 export LESSHISTFILE=/dev/null
 export LESS="-R -i -F -X --mouse --wheel-lines=3"
 
-export MANROFFOPT=-c
-export MANPAGER="sh -c 'col -bx | bat --theme-dark=gruvbox-dark -l man -p'"
-
-export FZF_DEFAULT_OPTS="--layout=reverse"
-
-export EDITOR=nvim
-export VISUAL=nvim
+# Prefer nvim, then vim, falling back to vi (always present)
+for editor in nvim vim vi; do
+  command -v "$editor" >/dev/null 2>&1 && break
+done
+EDITOR=$editor
+VISUAL=$editor
+unset editor
+export EDITOR VISUAL
 
 export BROWSER=firefox
 

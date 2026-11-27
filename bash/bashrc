@@ -8,54 +8,65 @@ esac
 
 # ---------------------------- Environment ---------------------------
 
-# Non-login shells (e.g. `bash` from fish) may lack the shared environment
-if [[ -z ${DOTFILES:-} && -f ~/.profile ]]; then
+# Non-login shells (e.g. a nested `bash`) may lack the shared environment
+if [ -z "${DOTFILES:-}" ] && [ -f ~/.profile ]; then
   . ~/.profile
 fi
 
 # Not exported, so child scripts calling `cd` are not affected
 CDPATH=".:$HOME:$REPOS/github.com:$GHREPOS:$DOTFILES"
-export -n CDPATH
-
-# ----------------------------- Readline -----------------------------
-
-set -o vi
-bind 'set show-all-if-ambiguous on'
-bind 'set completion-ignore-case on'
-
-# --------------------------- Shell options --------------------------
-
-shopt -s dotglob
-shopt -s extglob
-shopt -s globstar
-shopt -s checkwinsize
 
 # ------------------------------ History -----------------------------
 
+# Append to the history file instead of overwriting it on exit, and save
+# each command right away so parallel shells do not lose history
 shopt -s histappend
-export HISTSIZE=500000
-export HISTFILESIZE=100000
-export HISTCONTROL=ignoreboth
+PROMPT_COMMAND="history -a${PROMPT_COMMAND:+"; $PROMPT_COMMAND"}"
+
+HISTSIZE=100000
+HISTFILESIZE=100000
+HISTCONTROL=ignoreboth:erasedups
+HISTTIMEFORMAT='%F %T  '
 
 # ------------------------------ Aliases -----------------------------
 
 unalias -a
 alias vi='$EDITOR'
 alias clear='clear -x'
-if command -v eza >/dev/null 2>&1; then
-  alias ls='eza --icons --group-directories-first --classify=auto'
-fi
+alias ls='ls -h --color=auto'
+
+# ----------------------------- Functions ----------------------------
+
+# Clone a GitHub repo into $REPOS/github.com/<user>/<name> (or cd into it)
+clone() {
+  local repo user name dir
+  repo=${1:?usage: clone [user/]name}
+  repo=${repo#https://github.com/}
+  repo=${repo#git@github.com:}
+  repo=${repo%.git}
+  case $repo in
+  */*) user=${repo%%/*} ;;
+  *) user=${GITUSER:-$USER} ;;
+  esac
+  name=${repo##*/}
+  dir=$REPOS/github.com/$user/$name
+  if [ ! -d "$dir" ]; then
+    mkdir -p -- "${dir%/*}" &&
+      gh repo clone "$user/$name" "$dir" -- --recurse-submodules || return
+  fi
+  cd -- "$dir" || return
+}
 
 # ------------------------ Local configuration -----------------------
 
 for local_config in ~/.bash_personal ~/.bash_private ~/.bash_work; do
-  [[ -f $local_config ]] && . "$local_config"
+  [ -f "$local_config" ] && . "$local_config"
 done
 unset local_config
 
 # ---------------------- Completion and prompt -----------------------
 
-if [[ -z ${BASH_COMPLETION_VERSINFO:-} && -f /usr/share/bash-completion/bash_completion ]]; then
+if [ -z "${BASH_COMPLETION_VERSINFO:-}" ] && [ -f /usr/share/bash-completion/bash_completion ]; then
   . /usr/share/bash-completion/bash_completion
 fi
 

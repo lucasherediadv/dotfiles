@@ -2,11 +2,11 @@
 # shellcheck disable=SC1090
 
 # Load the shared environment first so sway and everything it starts inherit it
-[[ -f ~/.profile ]] && . ~/.profile
+[ -f ~/.profile ] && . ~/.profile
 
 # Autostart Sway on TTY1 if installed and no display server is running
-if [ -z "$WAYLAND_DISPLAY" ] &&
-  [ -z "$DISPLAY" ] &&
+if [ -z "${WAYLAND_DISPLAY:-}" ] &&
+  [ -z "${DISPLAY:-}" ] &&
   [ "${XDG_VTNR:-0}" -eq 1 ] &&
   command -v sway >/dev/null 2>&1; then
 
@@ -15,4 +15,4 @@ if [ -z "$WAYLAND_DISPLAY" ] &&
 fi
 
 # Source ~/.bashrc
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+[ -f ~/.bashrc ] && . ~/.bashrc

@@ -4,7 +4,7 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+# /dev/null makes grep print the file name even when given a single file
 find . \
-  -name '.git' \
-  -prune -o \
-  -exec grep -i --color=always "$1" {} /dev/null \; 2>/dev/null
+  -name '.git' -prune -o \
+  -type f -exec grep -i --color=always -e "$1" /dev/null {} + 2>/dev/null

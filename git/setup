@@ -5,3 +5,10 @@ repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}/git
 mkdir -p "$config_dir"
 ln -fs "$repo_dir/config" "$config_dir/config"
+
+# Use gh as the GitHub credential helper only if it is installed
+if command -v gh >/dev/null 2>&1; then
+  ln -fs "$repo_dir/credential-gh" "$config_dir/credential-gh"
+else
+  rm -f "$config_dir/credential-gh"
+fi

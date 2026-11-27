@@ -3,9 +3,7 @@
   email = lucasherediadv@gmail.com
 [init]
   defaultBranch = main
-[credential "https://github.com"]
-  helper =
-  helper = !gh auth git-credential
-[credential "https://gist.github.com"]
-  helper =
-  helper = !gh auth git-credential
+# GitHub credentials through gh, linked by git/setup only when gh is installed
+# (a missing include is ignored, so git works without gh)
+[include]
+  path = credential-gh

@@ -1,7 +1,4 @@
 version: 1
-pager: less
-editor: nvim
-browser: firefox
 git_protocol: https
 
 aliases:

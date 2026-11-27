@@ -121,9 +121,6 @@ if has('autocmd')
   filetype plugin on
 endif
 
-" Spell check in English and Spanish
-set spelllang=en,es
-
 " Enable spell checking for arbitrary file types
 if has('autocmd') && has('syntax')
   augroup spell_files

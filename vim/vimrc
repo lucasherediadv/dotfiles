@@ -79,13 +79,19 @@ set smartindent
 set smarttab
 
 " Disable spellcapcheck
-set spc=
+if exists('+spellcapcheck')
+  set spc=
+endif
 
 " More risky, but cleaner
 set nobackup
 set noswapfile
 set nowritebackup
-set viminfofile=NONE
+if exists('+viminfofile')
+  set viminfofile=NONE
+else
+  set viminfo=
+endif
 
 set linebreak
 
@@ -97,7 +103,9 @@ endif
 set noshowmatch
 
 " Mark trailing spaces as errors
-match Visual '\s\+$'
+if has('syntax')
+  match Visual '\s\+$'
+endif
 
 set wrap
 
@@ -105,13 +113,19 @@ set wrap
 set hidden
 
 " Here because plugins and stuff need it
-syntax enable
+if has('syntax')
+  syntax enable
+endif
 
 " Faster scrolling
 set ttyfast
 
 " Allow sensing the filetype
-filetype plugin on
+if has('autocmd')
+  filetype plugin on
+endif
 
 " Enable spell checking for arbitrary file types
-autocmd BufRead,BufNewFile *.{txt,md,adoc} set spell
+if has('autocmd') && has('syntax')
+  autocmd BufRead,BufNewFile *.{txt,md,adoc} set spell
+endif

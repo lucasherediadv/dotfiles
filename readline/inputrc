@@ -1,0 +1,60 @@
+# Readline configuration, shared by every program that uses it
+# (bash, python, psql, gdb, ...). See readline(3).
+
+# Keep the system defaults (terminal key sequences, 8-bit input)
+$include /etc/inputrc
+
+# --------------------------- Editing mode ---------------------------
+
+set editing-mode vi
+
+# Wait less for the rest of a key sequence after Esc (default 500ms)
+set keyseq-timeout 50
+
+# ---------------------------- Completion ----------------------------
+
+# List all matches at once instead of ringing the bell first
+set show-all-if-ambiguous on
+
+# Case-insensitive completion, treating - and _ as equivalent
+set completion-ignore-case on
+set completion-map-case on
+
+# Append / to completed directory symlinks
+set mark-symlinked-directories on
+
+# Mark file types (like ls -F) and color them (using $LS_COLORS)
+set visible-stats on
+set colored-stats on
+set colored-completion-prefix on
+
+# Do not ask before listing a long set of completions
+set completion-query-items 200
+set page-completions off
+
+# Do not complete hidden files unless the word starts with a dot
+set match-hidden-files off
+
+# ------------------------------ Others ------------------------------
+
+set bell-style none
+
+# Do not echo ^C after Ctrl-C
+set echo-control-characters off
+
+# Pasted text is inserted as-is, never executed line by line
+set enable-bracketed-paste on
+
+# ---------------------------- Key bindings ---------------------------
+
+# Up/Down search the history for lines starting with what was typed
+$if mode=vi
+set keymap vi-insert
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\C-l": clear-screen
+set keymap vi-command
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\C-l": clear-screen
+$endif

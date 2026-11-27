@@ -1,7 +1,0 @@
-#!/bin/sh
-set -eu
-
-repo_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
-config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}
-mkdir -p "$config_dir"
-ln -fs "$repo_dir/starship.toml" "$config_dir/starship.toml"

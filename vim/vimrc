@@ -1,8 +1,3 @@
-" Prevent vim from loading the systemd-wide default configuration
-if has("eval")
-  let g:skip_defaults_vim = 1
-endif
-
 " Disable vi compatibility, if for some reason it's on
 if &compatible
   set nocompatible
@@ -11,14 +6,16 @@ endif
 " Use colors that look good on dark backgrounds
 set background=dark
 
-" True color support
-if exists('+termguicolors')
+" True color support, only when the terminal advertises it
+if exists('+termguicolors') && $COLORTERM =~# 'truecolor\|24bit'
   set termguicolors
 endif
 
+" Gruvbox-like colorscheme bundled with Vim 9, ignored if missing
+silent! colorscheme retrobox
+
 " Highlight search hits
 set hlsearch
-set linebreak
 
 " While typing a search command, show where the pattern, as it was typed so far, matches
 set incsearch
@@ -66,8 +63,7 @@ set norelativenumber
 
 " Disable bell (also disable in .inputrc)
 set noerrorbells
-set visualbell
-set vb t_vb=
+set visualbell t_vb=
 
 set softtabstop=2
 
@@ -102,9 +98,12 @@ endif
 
 set noshowmatch
 
-" Mark trailing spaces as errors
-if has('syntax')
-  match Visual '\s\+$'
+" Mark trailing spaces as errors, in every window
+if has('autocmd') && has('syntax')
+  augroup trailing_spaces
+    autocmd!
+    autocmd VimEnter,BufWinEnter * match Visual '\s\+$'
+  augroup END
 endif
 
 set wrap
@@ -117,15 +116,18 @@ if has('syntax')
   syntax enable
 endif
 
-" Faster scrolling
-set ttyfast
-
 " Allow sensing the filetype
 if has('autocmd')
   filetype plugin on
 endif
 
+" Spell check in English and Spanish
+set spelllang=en,es
+
 " Enable spell checking for arbitrary file types
 if has('autocmd') && has('syntax')
-  autocmd BufRead,BufNewFile *.{txt,md,adoc} set spell
+  augroup spell_files
+    autocmd!
+    autocmd BufRead,BufNewFile *.{txt,md,adoc} setlocal spell
+  augroup END
 endif

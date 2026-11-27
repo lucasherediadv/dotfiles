@@ -13,7 +13,6 @@ cd ~/repos/github.com/lucasherediadv/dotfiles
 Individual tools can be set up separately:
 
 ```sh
-nvim/setup
 bash/setup
 sway/setup
 ```
@@ -28,8 +27,7 @@ Dotfiles are stored without the leading dot (e.g. `bash/bashrc`) so they are not
 | ---------- | ---------- | ---------------------------------------------- |
 | `bash/`    | Bash       | Login and interactive shell, env in `profile`  |
 | `readline/`| Readline   | `~/.inputrc`: vi mode, defaults otherwise      |
-| `nvim/`    | Neovim     | LazyVim + gruvbox                               |
-| `vim/`     | Vim        | Minimal fallback                                |
+| `vim/`     | Vim        | Default editor, minimal portable vimrc          |
 | `tmux/`    | tmux       | Terminal multiplexer                            |
 | `sway/`    | Sway       | Wayland WM                                      |
 | `waybar/`  | Waybar     | Status bar for Sway                             |
@@ -54,7 +52,7 @@ newscript <name>
 ```
 type(scope): subject
 
-feat(nvim): add telescope extension
+feat(vim): enable spell checking for markdown
 refactor(bash): clean up aliases
 chore(waybar): tweak bar colors
 ```

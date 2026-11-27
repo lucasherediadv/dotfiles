@@ -9,7 +9,6 @@ export LESSHISTFILE=/dev/null
 export LESS="-R -i -F -X"
 
 # Vim is the editor for every tool, falling back to vi (always present).
-# Neovim is only used when called explicitly as `nvim`
 for editor in vim vi; do
   command -v "$editor" >/dev/null 2>&1 && break
 done
